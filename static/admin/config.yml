@@ -1,5 +1,6 @@
 backend:
-  name: test-repo
+  name: github
+  repo: arm1n/arminribis.com
 
 media_folder: static/images
 public_folder: /img
