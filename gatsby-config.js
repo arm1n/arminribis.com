@@ -1,5 +1,6 @@
 module.exports = {
   	plugins: [
+  		`gatsby-plugin-react-helmet`,
   		{
   			resolve: `gatsby-plugin-sass`,
   			options: {
@@ -13,11 +14,7 @@ module.exports = {
 				name: `pages`,
 			},
 		},
-	  	{
-	  		resolve: `gatsby-plugin-netlify-cms`,
-	  	},
-	  	{
-	  		resolve: `gatsby-plugin-react-helmet`
-	  	}
+		`gatsby-transformer-remark`,
+		`gatsby-plugin-netlify-cms`,
 	],
 }

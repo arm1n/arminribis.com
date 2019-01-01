@@ -17,12 +17,4 @@ collections:
         name: "contact"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - {
-              label: "Body", 
-              name: "body", 
-              widget: "markdown",
-              buttons:
-                - bold
-                - italic
-                - heading-two
-          }
+          - { label: "Body", name: "body", widget: "markdown"}
