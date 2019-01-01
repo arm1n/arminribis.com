@@ -1,0 +1,13 @@
+@import "variables";
+
+.link {
+	z-index: 1;
+	position: fixed;
+	top: $layout-offset;
+	left: $layout-offset;
+}
+
+.logo {
+	width: 110px;
+	height: auto;
+}

@@ -1,0 +1,112 @@
+@import "variables";
+
+$width: 40px;
+$height: 4px;
+$margin: 6px;
+$border-radius: 3px;
+
+.toggle {
+	top: 50%;
+	position: fixed;
+	left: $layout-offset;
+
+	cursor: pointer;
+	transition-property: all;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+
+	&:hover,
+	&.toggle--active {
+		.toggle__inner,
+		.toggle__inner:before,
+		.toggle__inner:after {
+			background-color: $color-white;
+		}
+	}
+
+	&.toggle--active {
+		.toggle__outer {
+			// border-color: $color-white;
+			
+			&:before {
+				border-top-color: $color-white;
+				border-right-color: $color-white;
+				border-bottom-color: $color-white;
+				border-left-color: $color-white;
+
+				transition:
+					border-top-color 0.1s linear 0.15s,
+					border-right-color 0.1s linear 0.2s,
+					border-bottom-color 0.1s linear 0.25s,
+					border-left-color 0.1s linear 0.3s;
+			}
+			
+		}
+
+		.toggle__inner {
+			transform: scale(0.6) rotate(-180deg);
+
+			&:before {
+				transform: translate3d(9px, 0, 0) rotate(45deg) scale(0.7, 1);
+			}
+
+			&:after {
+				transform: translate3d(9px, 0, 0) rotate(-45deg) scale(0.7, 1);
+			}
+		}
+	}
+
+	// border (circle)
+	.toggle__outer {
+		display: flex;
+		width: $width;
+		height: $width;
+		position: relative;
+		border-radius: 100%;
+		align-items: center;
+		justify-content: center;
+
+		&:before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			border-radius: 100%;
+			border: 2px solid transparent;
+		}
+	}
+
+	// arrow / menu
+	.toggle__inner {
+	  top: 50%;
+	  display: block;
+	  margin-top: $height / -2;
+
+	  &,
+	  &:before,
+	  &:after {
+	    width: $width;
+	    height: $height;
+	    position: absolute;
+	    border-radius: $border-radius;
+	    background-color: $color-darkgrey;
+	    
+	    transition: transform 0.15s ease;
+	  }
+
+	  &:before,
+	  &:after {
+	    content: '';
+	    display: block;
+	  }
+
+	  &:before {
+	    top: ($margin + $height) * -1;
+	  }
+
+	  &:after {
+	    bottom: ($margin + $height) * -1;
+	  }
+	}
+}

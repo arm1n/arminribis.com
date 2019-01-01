@@ -1,0 +1,20 @@
+backend:
+  name: test-repo
+
+media_folder: static/images
+public_folder: /img
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    delete: false
+    editor: 
+      preview: false 
+    files:
+      - file: "src/pages/contact/index.md"
+        label: "Contact"
+        name: "contact"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "contact-page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }

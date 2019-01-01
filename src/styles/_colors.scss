@@ -1,0 +1,22 @@
+/**
+ * COLORS
+ */
+
+/**
+ * BASE
+ */
+body {
+	color: $color-darkgrey;
+	background: $color-lightgrey;
+}
+
+/**
+ * LINKS
+ */
+a {
+	color: $color-darkgrey;
+
+	&:hover {
+		color: $color-white;
+	}
+}

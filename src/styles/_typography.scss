@@ -1,0 +1,30 @@
+/**
+ * TYPOGRAPHY
+ */
+
+/**
+ * BASE
+ */
+html {
+  font-size: 100%; /* = 16px */
+}
+
+body {
+    font-family: 'Madera';
+    font-weight: 500;
+}
+
+/**
+ * HEADERS
+ */
+h1 {
+    font-family: 'Madera';
+    font-weight: bold;
+    font-size: 4.375rem; /* = 70px */
+}
+
+h2 {
+	font-family: 'Madera Medium';
+	font-weight: 500;
+	font-size: 1.5rem; /* = 24px */
+}

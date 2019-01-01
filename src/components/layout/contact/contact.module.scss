@@ -1,0 +1,36 @@
+@import "variables";
+
+$padding: 5px;
+
+.toggle {
+	top: 50%;
+	position: fixed;
+	right: $layout-offset;
+
+	padding: 5px;
+	text-transform: uppercase;
+	transform: rotate(-90deg);
+
+	&:hover{
+		color: inherit;
+	}
+
+	&:before {
+		width: 0;
+		height: 100%;
+		display: block;
+		overflow: hidden;
+		position: absolute;
+		color: $color-white;
+		content: attr(data-label);
+
+		transition: width 0.15s ease-in-out;
+	}
+
+	&:hover, 
+	&.toggle--active {
+		&:before {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,38 @@
+/**
+ * FONTS
+ */
+@font-face {
+    font-family: 'Madera';
+    src: local('Madera Medium Italic'), local('Madera-MediumItalic'),
+        url('../fonts/Madera-MediumItalic.woff2') format('woff2'),
+        url('../fonts/Madera-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Madera';
+    src: local('Madera Bold'), local('Madera-Bold'),
+        url('../fonts/Madera-Bold.woff2') format('woff2'),
+        url('../fonts/Madera-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Madera';
+    src: local('Madera Bold Italic'), local('Madera-BoldItalic'),
+        url('../fonts/Madera-BoldItalic.woff2') format('woff2'),
+        url('../fonts/Madera-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Madera';
+    src: local('Madera Medium'), local('Madera-Medium'),
+        url('../fonts/Madera-Medium.woff2') format('woff2'),
+        url('../fonts/Madera-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
