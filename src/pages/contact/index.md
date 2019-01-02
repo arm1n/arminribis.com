@@ -1,4 +1,5 @@
 ---
+template: contact
 title: Say Hello
 ---
 Phone
