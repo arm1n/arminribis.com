@@ -16,5 +16,6 @@ collections:
         label: "Contact"
         name: "contact"
         fields:
+          - { label: "Template", name: "template", widget: "hidden", default: "contact" }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
