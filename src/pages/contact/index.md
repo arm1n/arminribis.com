@@ -1,6 +1,6 @@
 ---
 template: contact
-title: Say Hello
+title: Say Hello!
 ---
 ## Phone
 [+43 664 123456789](tel:+43664123456789)
