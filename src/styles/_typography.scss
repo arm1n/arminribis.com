@@ -2,6 +2,9 @@
  * TYPOGRAPHY
  */
 
+
+
+
 /**
  * BASE
  */
@@ -20,7 +23,7 @@ body {
 h1 {
     font-family: 'Madera';
     font-weight: bold;
-    font-size: 4.375rem; /* = 70px */
+    font-size: $font-size-lg; /* = 70px */
     text-transform: uppercase;
     margin: 0 0 2.5rem;
 }
@@ -28,7 +31,7 @@ h1 {
 h2 {
 	font-family: 'Madera';
 	font-weight: 500;
-	font-size: 1.5rem; /* = 24px */
+	font-size: $font-size-md; /* = 24px */
 	text-transform: uppercase;
 	margin: 0 0 .5rem;
 }

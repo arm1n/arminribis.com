@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 
-import { LogoImageIcon, MenuIcon } from './icons';
+import { Centered } from './utils';
+import Navigation from './navigation';
 import styles from './layout.module.scss';
+import { LogoImageIcon, MenuIcon } from './icons';
 
 import '../styles/main.scss';
 
 const Layout = ({ children }) => (
 	<div className={styles.wrapper}>
 		<Logo />
-		<Nav />
+		<Menu />
 		<Contact/>
     	<main className={styles.main}>
     		{children}
@@ -48,7 +50,7 @@ Contact.defaultProps = {
 	label: 'Contact'
 };
 
-class Nav extends Component {
+class Menu extends Component {
 
 	state = { isOpen: false }
 
@@ -61,6 +63,11 @@ class Nav extends Component {
 	}
 
 	render() {
+		const {
+			state: {
+				isOpen
+			}
+		} = this;
 
 		return (
 			<div>
@@ -68,39 +75,17 @@ class Nav extends Component {
 					onClick={this.toggle}
 					className={styles.menuToggle}
 					href={this.state.isOpen ? '' :'#menu'}>
-					<MenuIcon isActive={this.state.isOpen}/>
+					<MenuIcon isActive={isOpen}/>
 				</a>
-				<Menu className={styles.menuWrapper}/>
+				{isOpen
+					? (
+						<Centered>
+							<Navigation />
+						</Centered>
+					)
+					: null
+				}
 			</div>
 		);
 	}
 }
-
-const Menu = () => (
-  <StaticQuery
-    
-    render={data => {
-    	console.log(data);
-    	return (
-    		<div>data</div>
-		);
-    	}
-    }
-    query={menuQuery}
-  />
-);
-
-const menuQuery = graphql`
-	query layoutMenuQuery {
-		allSitePage(filter: {context: {menu: {eq: true}}}) {
-			edges {
-				node {
-					path,
-					context {
-						title
-					}
-				}
-			}
-		}
-	}
-`;

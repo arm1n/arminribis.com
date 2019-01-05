@@ -2,34 +2,28 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
-import { BackButton } from '../components/nav';
 import { HTML, Centered } from '../components/utils';
+import { BackButton } from '../components/navigation';
 
-export const ServicesTemplate = ({ title, content }) => {
+export const ServicesTemplate = ({ content }) => {
   return (
     <Centered>
-      <h1>{title}</h1>
       <HTML content={content} />
       <BackButton />
     </Centered>
   )
-}
+};
 
 const Services = ({ data }) => {
   const { 
     markdownRemark: {
-      html,
-      frontmatter: {
-        title
-      }
+      html
     }
   } = data;
 
   return (
     <Layout>
-      <ServicesTemplate
-        title={title} 
-        content={html} />
+      <ServicesTemplate content={html} />
     </Layout>
   )
 };
