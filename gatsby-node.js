@@ -16,6 +16,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
   const handleQueryData = (data) => {
     const { allMarkdownRemark: { edges } } = data;
 
+
+
     edges.forEach(edge => {
       const {
         node: {
@@ -30,6 +32,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           }
         }
       } = edge;
+
+      console.log(title);
 
       let component = `src/templates/${template}.jsx`;
       component = path.resolve(component);
