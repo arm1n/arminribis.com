@@ -4,7 +4,7 @@ seo:
   description: Learn more about my mindset - design and photography.
   title: About
 ---
-![](/img/arminribis_20180812_42_hp.jpg)
+![](/images/arminribis_20180812_42_hp.jpg)
 
 # Hey folks!
 
