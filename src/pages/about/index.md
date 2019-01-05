@@ -1,6 +1,7 @@
 ---
 template: about
 seo:
+  description: Learn more about my mindset - design and photography.
   title: About
 ---
 # Hey folks!
