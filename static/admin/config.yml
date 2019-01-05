@@ -25,6 +25,7 @@ collections:
             fields:
             - { label: "Title", name: "title", widget: "string" }
             - { label: "Description", name: "description", widget: "string" }
+          - { label: "Menu", name: "menu", widget: "boolean", default: true }
 
       - file: "src/pages/services/index.md"
         label: "Services"
@@ -38,6 +39,7 @@ collections:
             fields:
             - { label: "Title", name: "title", widget: "string" }
             - { label: "Description", name: "description", widget: "string" }
+          - { label: "Menu", name: "menu", widget: "boolean", default: true }
 
       - file: "src/pages/contact/index.md"
         label: "Contact"
@@ -51,4 +53,5 @@ collections:
             fields:
             - { label: "Title", name: "title", widget: "string" }
             - { label: "Description", name: "description", widget: "string" }
+          - { label: "Menu", name: "menu", widget: "boolean", default: false }
 

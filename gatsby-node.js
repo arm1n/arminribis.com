@@ -23,8 +23,12 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           fields: {
             slug // @see: `onCreateNode()` at EOF
           },
-          frontmatter: {
-            template // @see: `static/admin/config.yml`
+          frontmatter: { // @see: `static/admin/config.yml`
+            template,
+            menu,
+            seo: {
+              label
+            }
           }
         }
       } = edge;
@@ -36,7 +40,9 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
         path: slug,
         component,
         context: {
-          id
+          id,
+          menu,
+          label
         }
       })
     });
@@ -66,7 +72,10 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
               slug
             },
             frontmatter {
-              template
+              template,
+              seo {
+                title
+              }
             }
           }
         }

@@ -16,43 +16,43 @@ import LogoImageSVG from '../icons/logo-image.svg';
 import FacebookSVG from '../icons/facebook.svg';
 import InstagramSVG from '../icons/instagram.svg';
 
-export const Arrow = (props) => (
+export const ArrowIcon = (props) => (
   <Icon icon={ArrowSVG} {...props}/>
 );
 
-export const Close = (props) => (
+export const CloseIcon = (props) => (
   <Icon icon={CloseSVG} {...props}/>
 );
 
-export const LogoText = (props) => (
+export const LogoTextIcon = (props) => (
   <Icon icon={LogoTextSVG} {...props}/>
 );
 
-export const LogoImage = (props) => (
+export const LogoImageIcon = (props) => (
   <Icon icon={LogoImageSVG} {...props}/>
 );
 
-export const Hike = (props) => (
+export const HikeIcon = (props) => (
   <Icon icon={HikeSVG} {...props}/>
 );
 
-export const Travel = (props) => (
+export const TravelIcon = (props) => (
   <Icon icon={TravelSVG} {...props}/>
 );
 
-export const Explore = (props) => (
+export const ExploreIcon = (props) => (
   <Icon icon={ExploreSVG} {...props}/>
 );
 
-export const Facebook = (props) => (
+export const FacebookIcon = (props) => (
   <Icon icon={FacebookSVG} {...props}/>
 );
 
-export const Instagram = (props) => (
+export const InstagramIcon = (props) => (
   <Icon icon={InstagramSVG} {...props}/>
 );
 
-export const Menu = ({ isActive }) => (
+export const MenuIcon = ({ isActive }) => (
 	<svg
 		viewBox='0 0 40 40'
 		className={`

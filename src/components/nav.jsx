@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
-import { Arrow } from './icons';
+import { ArrowIcon } from './icons';
 import styles from './nav.module.scss';
 
 export const BackButton = (props) => {
@@ -17,7 +17,7 @@ export const BackButton = (props) => {
 
 	return (
 		<Link to='/' className={styles.backButton} {...props}>
-			<Arrow className={styles.backButtonArrow}/>
+			<ArrowIcon className={styles.backButtonArrow}/>
 			<span className={styles.backButtonLabel}>
 				{label}
 			</span>

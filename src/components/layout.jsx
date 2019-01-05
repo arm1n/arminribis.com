@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import { StaticQuery, Link, graphql } from 'gatsby';
 
-import { LogoImage, Menu } from './icons';
+import { LogoImageIcon, MenuIcon } from './icons';
 import styles from './layout.module.scss';
 
 import '../styles/main.scss';
@@ -27,7 +27,7 @@ const Logo = ({ icon: Icon }) => (
 );
 
 Logo.defaultProps = {
-	icon: LogoImage
+	icon: LogoImageIcon
 };
 
 Logo.propTypes = {
@@ -61,18 +61,50 @@ class Nav extends Component {
 	}
 
 	render() {
+
 		return (
 			<div>
 				<a
 					onClick={this.toggle}
 					className={styles.menuToggle}
 					href={this.state.isOpen ? '' :'#menu'}>
-					<Menu isActive={this.state.isOpen}/>
+					<MenuIcon isActive={this.state.isOpen}/>
 				</a>
-				<div className={styles.menuWrapper}>
-
-				</div>
+				<Menu className={styles.menuWrapper}/>
 			</div>
 		);
 	}
 }
+
+const Menu = () => (
+  <StaticQuery
+    
+    render={data => {
+    	console.log(data);
+    	return (
+    		<div>data</div>
+		);
+    	}
+    }
+    query={menuQuery}
+  />
+);
+
+const menuQuery = graphql`
+	query layoutMenuQuery {
+		allMarkdownRemark {
+			edges {
+				node {
+					fields {
+						slug
+					}
+					frontmatter {
+						seo {
+							title
+						}
+					}
+				}
+			}
+		}
+	}
+`;

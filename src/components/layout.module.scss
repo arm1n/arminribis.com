@@ -4,7 +4,10 @@
 // WRAPPER
 //
 .wrapper {
-	margin: 0 $layout-offset + $layout-margin;
+	$margin: $layout-offset + $layout-margin;
+
+	margin-right: $margin;
+	margin-left: $margin;
 }
 
 .main {
