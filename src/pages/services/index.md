@@ -4,9 +4,9 @@ menu: true
 title: Services
 description: Find the full list of my offered services in photography and graphic design.
 ---
-What can I do for you?
+# What can I do for you?
 
-Photography and Graphic Design
+## Photography and Graphic Design
 
 Logo Design\
 Corporate Design\
