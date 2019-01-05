@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import { BackButton } from '../components/nav';
 import { HTML, Centered } from '../components/utils';
 
-export const ContactTemplate = ({ title, content }) => {
+export const ServicesTemplate = ({ title, content }) => {
   return (
     <Centered>
       <h1>{title}</h1>
@@ -15,7 +15,7 @@ export const ContactTemplate = ({ title, content }) => {
   )
 }
 
-const Contact = ({ data }) => {
+const Services = ({ data }) => {
   const { 
     markdownRemark: {
       html,
@@ -27,15 +27,15 @@ const Contact = ({ data }) => {
 
   return (
     <Layout>
-      <ContactTemplate
+      <ServicesTemplate
         title={title} 
         content={html} />
     </Layout>
   )
 };
 
-export const contactQuery = graphql`
-  query contactQuery($id: String!) {
+export const servicesQuery = graphql`
+  query servicesQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html,
       frontmatter {
@@ -45,4 +45,4 @@ export const contactQuery = graphql`
   }
 `;
 
-export default Contact;
+export default Services;

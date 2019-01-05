@@ -1,0 +1,19 @@
+/**
+ * MIXINS
+ */
+
+/**
+ * ARROWS
+ */
+@mixin arrow ($direction: left, $size: 2rem) {
+	$arrows: (
+		top: '\2190',
+		left: '\2190',
+		right: '\2192',
+		bottom: '\2193'
+	);
+
+	@if not map-contains($arrows, $direction) {
+      $direction: left;
+    }
+}

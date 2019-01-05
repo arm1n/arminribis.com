@@ -1,0 +1,39 @@
+/**
+ * BODY
+ */
+body {
+	line-height: 1.3;
+	color: $color-darkgrey;
+	background: $color-lightgrey;
+}
+
+/**
+ * PARAGRAPHS
+ */
+p {
+	margin: 0 0 1.5rem;
+}
+
+/**
+ * LINKS
+ */
+a {
+	color: $color-darkgrey;
+
+	text-decoration: none;
+	transition: color .15s ease;
+
+	svg {
+		transition: all 0.15s ease;
+	}
+	
+	
+	&:hover {
+		color: $color-white;
+
+		svg {
+			fill: $color-white;
+			color: $color-white;
+		}
+	}
+}

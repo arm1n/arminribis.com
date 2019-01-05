@@ -1,0 +1,17 @@
+/**
+ * MIXINS
+ */
+
+/**
+ * ARROWS
+ */
+%arrow {
+	&:before {
+		width: 30px;
+		height: 30px;
+		content: '';
+		display: inline-block;
+		background: url('/images/arrow.svg') no-repeat;
+		
+	}
+}

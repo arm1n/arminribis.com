@@ -1,0 +1,73 @@
+@import 'variables';
+
+//
+// WRAPPER
+//
+.wrapper {
+
+	$margin: $layout-offset + $layout-margin;
+
+	text-align: center;
+	margin: 0 $margin;
+}
+
+//
+// LOGO
+//
+.logo-link {
+	z-index: 1;
+	position: fixed;
+	top: $layout-offset;
+	left: $layout-offset;
+}
+
+.logo-svg {
+	width: 110px;
+	height: auto;
+}
+
+//
+// MENU
+//
+.menu-toggle {
+	top: 50%;
+	width: 40px;
+	height: 40px;
+	display: block;
+	position: fixed;
+	left: $layout-offset;
+}
+
+//
+// CONTACT
+//
+.contact-link {
+	top: 50%;
+	right: 0;
+	position: fixed;
+
+	text-transform: uppercase;
+	transform: rotate(-90deg);
+
+	&:before {
+		left: 0;
+		width: 0;
+		height: 100%;
+		display: block;
+		overflow: hidden;
+		position: absolute;
+		color: $color-white;
+		content: attr(data-label);
+
+		transition: width 0.15s ease-in-out;
+	}
+
+	&:hover, 
+	&.contact-link--active {
+		color: inherit;
+		
+		&:before {
+			width: 100%;
+		}
+	}
+}

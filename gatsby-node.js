@@ -1,10 +1,62 @@
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+const path = require('path');
 
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+const { createFilePath } = require('gatsby-source-filesystem');
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
-  return graphql(`
+//
+// Creates pages from markdown data persisted by netlify cms:
+// https://www.gatsbyjs.org/docs/programmatically-create-pages-from-data/
+//
+exports.createPages = ({ actions: { createPage }, graphql }) => {
+
+  //
+  // Create pages with hidden `template` field based
+  // on prepared templates in `src/templates` folder
+  //
+  const handleQueryData = (data) => {
+    const { allMarkdownRemark: { edges } } = data;
+
+    edges.forEach(edge => {
+      const {
+        node: {
+          id,
+          fields: {
+            slug // @see: `onCreateNode()` at EOF
+          },
+          frontmatter: {
+            template // @see: `static/admin/config.yml`
+          }
+        }
+      } = edge;
+
+      let component = `src/templates/${template}.jsx`;
+      component = path.resolve(component);
+
+      createPage({
+        path: slug,
+        component,
+        context: {
+          id
+        }
+      })
+    });
+  };
+
+  //
+  // Error handling or proxy to `handleQueryData`
+  //
+  const handleQueryResult = ({ data, errors }) => {
+    if (errors !== undefined) {
+      return Promise.reject(errors)
+    }
+
+    handleQueryData(data);
+  };
+
+  //
+  // Fetch all remarked pages from `src/pages/`
+  //
+  graphql(`
     {
       allMarkdownRemark(limit: 1000) {
         edges {
@@ -12,7 +64,7 @@ exports.createPages = ({ actions, graphql }) => {
             id
             fields {
               slug
-            }
+            },
             frontmatter {
               template
             }
@@ -20,41 +72,29 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-  `).then(result => {
-    if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()))
-      return Promise.reject(result.errors)
+  `).then(handleQueryResult);
+};
+
+//
+// Creates `slug` field for pages dynamically based on file name:
+// https://www.gatsbyjs.org/docs/creating-slugs-for-pages/
+//
+// Converts `frontmatter` images to relative paths (netlify-cms):
+// https://github.com/danielmahon/gatsby-remark-relative-images
+//
+exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
+  
+  // add `slug` field to node
+  switch (node.internal.type) {
+    case 'MarkdownRemark': {
+      const value = createFilePath({ node, getNode });
+      createNodeField({ name: `slug`, node, value });
+      break;
     }
 
-    const pages = result.data.allMarkdownRemark.edges
-
-    pages.forEach(edge => {
-      const id = edge.node.id
-      createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.template)}.jsx`
-        ),
-        // additional data can be passed via context
-        context: {
-          id,
-        },
-      })
-    });
-
-  })
-}
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
+    default:
   }
-}
+
+  // make relative image paths
+  fmImagesToRelative(node);
+};
