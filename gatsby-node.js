@@ -27,7 +27,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
             template,
             menu,
             seo: {
-              label
+              title
             }
           }
         }
@@ -36,7 +36,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
       let component = `src/templates/${template}.jsx`;
       component = path.resolve(component);
 
-      console.log(label, menu);
+      console.log(title, menu);
 
       createPage({
         path: slug,
@@ -44,7 +44,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
         context: {
           id,
           menu,
-          label
+          title
         }
       })
     });
@@ -77,7 +77,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
               template,
               seo {
                 title
-              }
+              },
+              menu
             }
           }
         }

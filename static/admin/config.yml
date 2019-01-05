@@ -18,40 +18,28 @@ collections:
         name: "about"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "about" }
+          - { label: "Show in Menu", name: "menu", widget: "boolean", default: true }
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
-          - label: "SEO"
-            name: "seo"
-            widget: "object"
-            fields:
-            - { label: "Title", name: "title", widget: "string" }
-            - { label: "Description", name: "description", widget: "string" }
-          - { label: "Menu", name: "menu", widget: "boolean", default: true }
+          
 
       - file: "src/pages/services/index.md"
         label: "Services"
         name: "services"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "services" }
+          - { label: "Show in Menu", name: "menu", widget: "boolean", default: true }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
-          - label: "SEO"
-            name: "seo"
-            widget: "object"
-            fields:
-            - { label: "Title", name: "title", widget: "string" }
-            - { label: "Description", name: "description", widget: "string" }
-          - { label: "Menu", name: "menu", widget: "boolean", default: true }
 
       - file: "src/pages/contact/index.md"
         label: "Contact"
         name: "contact"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "contact" }
+          - { label: "Show in Menu", name: "menu", widget: "boolean", default: false }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
-          - label: "SEO"
-            name: "seo"
-            widget: "object"
-            fields:
-            - { label: "Title", name: "title", widget: "string" }
-            - { label: "Description", name: "description", widget: "string" }
-          - { label: "Menu", name: "menu", widget: "boolean", default: false }
-

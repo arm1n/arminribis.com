@@ -1,6 +1,6 @@
 ---
 template: services
-seo:
-  title: Services
-menu: true
+title: Services
+description:
+show_in_menu: true
 ---

@@ -92,16 +92,12 @@ const Menu = () => (
 
 const menuQuery = graphql`
 	query layoutMenuQuery {
-		allMarkdownRemark {
+		allSitePage(filter: {context: {menu: {eq: true}}}) {
 			edges {
 				node {
-					fields {
-						slug
-					}
-					frontmatter {
-						seo {
-							title
-						}
+					path,
+					context {
+						title
 					}
 				}
 			}
