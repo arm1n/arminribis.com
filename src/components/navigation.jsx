@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql } from 'gatsby';
 
-import { ArrowIcon } from './icons';
+import { CloseIcon } from './icons';
 import styles from './navigation.module.scss';
 
 export const BackButton = (props) => {
@@ -20,7 +20,7 @@ export const BackButton = (props) => {
 			to='/'
 			className={styles.backButton}
 			{...props}>
-			<ArrowIcon
+			<CloseIcon
 				className={styles.backButtonArrow}/>
 			<span
 				className={styles.backButtonLabel}>
@@ -31,7 +31,7 @@ export const BackButton = (props) => {
 };
 
 BackButton.defaultProps = {
-	label: 'Go back'
+	label: 'Close'
 };
 
 BackButton.propTypes = {
@@ -77,13 +77,23 @@ const navigationRender = (data) => {
 	});
 
 	return (
-		<nav className={styles.navigation}>{items}</nav>
+		<div className={styles.navigation}>{items}</div>
 	);
 };
 
 const navigationQuery = graphql`
 	query navigationQuery {
-		allSitePage(filter: {context: {menu: {eq: true}}}) {
+		allSitePage(
+			filter: {
+				context: {
+					menu: { eq:true }
+				}
+			},
+			sort: {
+				fields: [context___order],
+				order: ASC
+			}
+		) {
 			edges {
 				node {
 					id,

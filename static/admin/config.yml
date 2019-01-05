@@ -13,13 +13,24 @@ collections:
       preview: false 
     files:
 
+      - file: "src/pages/portfolio/index.md"
+        label: "Portfolio"
+        name: "portfolio"
+        fields:
+          - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
+          - { label: "Menu", name: "menu", widget: "hidden", default: true }
+          - { label: "Order", name: "order", widget: "hidden", default: 0 }
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown"}
+
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "about" }
           - { label: "Menu", name: "menu", widget: "hidden", default: true }
-          - { label: "Order", name: "order", widget: "hidden", default: 0 }
+          - { label: "Order", name: "order", widget: "hidden", default: 1 }
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
@@ -31,7 +42,7 @@ collections:
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "services" }
           - { label: "Menu", name: "menu", widget: "hidden", default: true }
-          - { label: "Order", name: "order", widget: "hidden", default: 1 }
+          - { label: "Order", name: "order", widget: "hidden", default: 2 }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
@@ -42,7 +53,7 @@ collections:
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "contact" }
           - { label: "Menu", name: "menu", widget: "hidden", default: false }
-          - { label: "Order", name: "order", widget: "hidden", default: 2 }
+          - { label: "Order", name: "order", widget: "hidden", default: 3 }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}

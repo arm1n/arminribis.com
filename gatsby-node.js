@@ -27,8 +27,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           },
           frontmatter: { // @see: `static/admin/config.yml`
             template,
-            order,
             title,
+            order,
             menu
           }
         }
@@ -43,8 +43,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
         context: {
           id,
           menu,
-          title,
-          order
+          order,
+          title
         }
       })
     });
@@ -75,8 +75,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
             },
             frontmatter {
               template,
-              order,
               title,
+              order,
               menu
             }
           }

@@ -58,8 +58,17 @@ class Menu extends Component {
 		event.preventDefault();
 
 		this.setState(
-			(state) => ({ isOpen: !state.isOpen })
+			(state) => ({
+				isOpen: !state.isOpen
+			})
 		);
+	}
+
+	close = (event) => {
+		event.preventDefault();
+		this.setState({
+			isOpen: false
+		});
 	}
 
 	render() {
@@ -70,7 +79,7 @@ class Menu extends Component {
 		} = this;
 
 		return (
-			<div>
+			<nav>
 				<a
 					onClick={this.toggle}
 					className={styles.menuToggle}
@@ -79,13 +88,22 @@ class Menu extends Component {
 				</a>
 				{isOpen
 					? (
-						<Centered>
-							<Navigation />
-						</Centered>
+						<div
+							id="menu"
+							tabIndex="-1"
+							role="button"
+							onClick={this.close}
+							className={styles.menuWrapper}>
+							<div className={styles.menuCentered}>
+							<Centered className={styles.menuCentered}>
+								<Navigation />
+							</Centered>
+							</div>
+						</div>
 					)
 					: null
 				}
-			</div>
+			</nav>
 		);
 	}
 }

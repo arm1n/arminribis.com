@@ -1,6 +1,7 @@
 ---
 template: services
 menu: true
+order: 2
 title: Services
 description: Find the full list of my offered services in photography and graphic design.
 ---

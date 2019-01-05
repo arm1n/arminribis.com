@@ -23,17 +23,16 @@ a {
 	text-decoration: none;
 	transition: color .15s ease;
 
-	svg {
+	/* svg {
 		transition: all 0.15s ease;
-	}
+	} */
 	
 	
 	&:hover {
 		color: $color-white;
 
-		svg {
+		/* svg {
 			fill: $color-white;
-			stroke: $color-white;
-		}
+		} */
 	}
 }

@@ -1,6 +1,7 @@
 ---
 template: contact
 menu: false
+order: 3
 title: Contact
 description: Make a call or write an email to get in touch with me!
 ---
