@@ -1,9 +1,8 @@
 ---
 template: about
-seo:
-  description: Learn more about my mindset - design and photography.
-  title: ''
 menu: true
+title: About
+description: Learn more about me and my passion - design and photography.
 ---
 # Hey folks!
 
