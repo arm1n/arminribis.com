@@ -4,10 +4,12 @@
 // MENU
 //
 .menu {
+	stroke: $color-darkgrey;
 	transform-origin: 50% 50%;
 	transition: transform .3s ease;
 
 	&.menu--active {
+		stroke: $color-white;
 		transform: rotate(360deg);
 
 		.menu-lines {
@@ -24,29 +26,26 @@
 		}
 
 		.menu-circle {
-			opacity: 1;
+			visibility: visible;
 			stroke-dashoffset: 0;
-			transition-delay: 0.3s;
 		}
 	}
 
 	.menu-circle {
 		fill: none;
-		opacity: 0;
 		stroke-width: 2px;
 		stroke-dasharray: 150;
 		stroke-dashoffset: 150;
-		stroke: $color-darkgrey;
 
+		visibility: hidden;
 		transform-origin: 50% 50%;
-		transition: stroke-dashoffset .5s linear;
+		transition: stroke-dashoffset .5s linear 0.3s;
 	}
 
 	.menu-lines {
 		stroke-width: 3px;
 		stroke-linecap: round;
   		stroke-linejoin: bevel;
-		stroke: $color-darkgrey;
 
 		transform: scale(.8);
 

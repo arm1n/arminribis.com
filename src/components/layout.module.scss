@@ -4,11 +4,11 @@
 // WRAPPER
 //
 .wrapper {
+	margin: 0 $layout-offset + $layout-margin;
+}
 
-	$margin: $layout-offset + $layout-margin;
-
+.main {
 	text-align: center;
-	margin: 0 $margin;
 }
 
 //

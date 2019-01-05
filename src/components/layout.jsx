@@ -62,28 +62,17 @@ class Nav extends Component {
 
 	render() {
 		return (
-			<a
-				onClick={this.toggle}
-				className={styles.menuToggle}
-				href={this.state.isOpen ? '' :'#menu'}>
-				<Menu isActive={this.state.isOpen}/>
-			</a>
-		);
-		/*return (
-			<div
-				onClick={this.toggle}
-				className={`
-					${styles.toggle} 
-					${this.state.isOpen
-						? styles.toggleActive
-						: ''
-					}
-				`}>
-				<div className={styles.toggle__outer}>
-					<div className={styles.toggle__inner}>
-					</div>
+			<div>
+				<a
+					onClick={this.toggle}
+					className={styles.menuToggle}
+					href={this.state.isOpen ? '' :'#menu'}>
+					<Menu isActive={this.state.isOpen}/>
+				</a>
+				<div classNames={styles.menuWrapper}>
+
 				</div>
 			</div>
-		)*/
+		);
 	}
 }
