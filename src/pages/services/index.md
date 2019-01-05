@@ -1,4 +1,6 @@
 ---
 template: services
-title:
+seo:
+  title: Services
+menu: true
 ---

@@ -36,6 +36,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
       let component = `src/templates/${template}.jsx`;
       component = path.resolve(component);
 
+      console.log(label, menu);
+
       createPage({
         path: slug,
         component,
