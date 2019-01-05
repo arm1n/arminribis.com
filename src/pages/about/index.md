@@ -1,7 +1,7 @@
 ---
 template: about
 menu: true
-order: 1
+order: 2
 title: About
 description: Learn more about my mindset - design and photography.
 ---
