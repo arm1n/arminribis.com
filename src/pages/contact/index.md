@@ -2,7 +2,7 @@
 template: contact
 seo:
   description: Give me a call or write an email to get in touch!
-  title: Contact
+  title: ''
 menu: false
 ---
 # Say Hello!
