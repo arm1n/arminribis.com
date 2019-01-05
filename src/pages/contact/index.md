@@ -2,7 +2,7 @@
 template: contact
 description: Give me a call or write an email to get in touch!
 title: Contact
-show_in_menu: false
+menu: false
 ---
 # Say Hello!
 

@@ -2,7 +2,7 @@
 template: about
 title: About
 description: Learn more about my mindset - design and photography.
-show_in_menu: true
+menu: true
 ---
 # Hey folks!
 

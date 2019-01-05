@@ -18,7 +18,7 @@ collections:
         name: "about"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "about" }
-          - { label: "Show in Menu", name: "menu", widget: "boolean", default: true }
+          - { label: "Menu", name: "menu", widget: "boolean", default: true }
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
@@ -29,7 +29,7 @@ collections:
         name: "services"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "services" }
-          - { label: "Show in Menu", name: "menu", widget: "boolean", default: true }
+          - { label: "Menu", name: "menu", widget: "boolean", default: true }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
@@ -39,7 +39,7 @@ collections:
         name: "contact"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "contact" }
-          - { label: "Show in Menu", name: "menu", widget: "boolean", default: false }
+          - { label: "Menu", name: "menu", widget: "boolean", default: false }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
