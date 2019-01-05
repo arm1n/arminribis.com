@@ -69,7 +69,7 @@ class Nav extends Component {
 					href={this.state.isOpen ? '' :'#menu'}>
 					<Menu isActive={this.state.isOpen}/>
 				</a>
-				<div classNames={styles.menuWrapper}>
+				<div className={styles.menuWrapper}>
 
 				</div>
 			</div>
