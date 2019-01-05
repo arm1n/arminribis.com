@@ -1,8 +1,8 @@
 ---
 template: contact
-description: Give me a call or write an email to get in touch!
-title: Contact
 menu: false
+title: Contact
+description: Make a call or write an email to get in touch with me!
 ---
 # Say Hello!
 
