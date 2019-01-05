@@ -1,7 +1,7 @@
 ---
 template: about
 menu: true
-title: About
+title: 'About '
 description: Learn more about my mindset - design and photography.
 ---
 # Hey folks!
