@@ -2,7 +2,7 @@
 template: about
 seo:
   description: Learn more about my mindset - design and photography.
-  title: About
+  title: ''
 menu: true
 ---
 # Hey folks!
