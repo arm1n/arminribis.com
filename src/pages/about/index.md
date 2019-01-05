@@ -4,6 +4,8 @@ seo:
   description: Learn more about my mindset - design and photography.
   title: About
 ---
+![](/img/arminribis_20180812_42_hp.jpg)
+
 # Hey folks!
 
 My name is Armin Ribis and i'm a passionate photographer and creative director based in Tirol, Innsbruck.
