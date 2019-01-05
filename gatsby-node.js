@@ -27,13 +27,12 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           },
           frontmatter: { // @see: `static/admin/config.yml`
             template,
+            order,
             title,
             menu
           }
         }
       } = edge;
-
-      console.log(title);
 
       let component = `src/templates/${template}.jsx`;
       component = path.resolve(component);
@@ -44,7 +43,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
         context: {
           id,
           menu,
-          title
+          title,
+          order
         }
       })
     });
@@ -75,6 +75,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
             },
             frontmatter {
               template,
+              order,
               title,
               menu
             }
@@ -102,7 +103,9 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
       break;
     }
 
-    default:
+    default: {
+      // noop
+    }
   }
 
   // make relative image paths
