@@ -25,18 +25,14 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           },
           frontmatter: { // @see: `static/admin/config.yml`
             template,
-            menu,
-            seo: {
-              title
-            }
+            title,
+            menu
           }
         }
       } = edge;
 
       let component = `src/templates/${template}.jsx`;
       component = path.resolve(component);
-
-      console.log(title, menu);
 
       createPage({
         path: slug,
@@ -75,9 +71,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
             },
             frontmatter {
               template,
-              seo {
-                title
-              },
+              title,
               menu
             }
           }
