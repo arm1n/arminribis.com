@@ -16,8 +16,6 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
   const handleQueryData = (data) => {
     const { allMarkdownRemark: { edges } } = data;
 
-
-
     edges.forEach(edge => {
       const {
         node: {
@@ -66,7 +64,14 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
   //
   graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMarkdownRemark(
+        filter: {
+          frontmatter: {
+            template: {
+              ne: null
+            }
+          }
+        }) {
         edges {
           node {
             id
@@ -94,17 +99,14 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
 // https://github.com/danielmahon/gatsby-remark-relative-images
 //
 exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
-  const {
-    internal: {
-      type
-    },
-    frontmatter
-  } = node;
-  
-  // add `slug` field to node
-  switch (type) {
-    case 'MarkdownRemark': {
-      const value = !(frontmatter && frontmatter.index)
+  const frontmatter = node.frontmatter;
+  if (frontmatter === undefined) {
+    return;
+  }
+
+  switch (frontmatter.type) {
+    case 'page': {
+      const value = !frontmatter.index
         ? createFilePath({ node, getNode })
         : '/';
 

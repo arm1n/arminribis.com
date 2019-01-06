@@ -1,5 +1,6 @@
 ---
 template: contact
+type: page
 order: 4
 title: Contact
 description: Make a call or write an email to get in touch with me!

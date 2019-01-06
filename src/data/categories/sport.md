@@ -1,4 +1,5 @@
 ---
+type: category
 title: Sport
 ---
 

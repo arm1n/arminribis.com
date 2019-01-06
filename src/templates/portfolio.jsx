@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import { HTML, Centered } from '../components/utils';
-import { BackButton } from '../components/navigation';
 
 export const PortfolioTemplate = ({ content }) => {
   return (

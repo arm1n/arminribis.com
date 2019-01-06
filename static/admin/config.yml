@@ -8,17 +8,21 @@ public_folder: /images
 collections:
   - name: "categories"
     label: "Categories"
+    identifier_field: title
     folder: "src/data/categories"
     create: true
     fields:
-      - { label: "Name", name: "title", widget: "string" } # must be `title`
+      - { label: "Type", name: "type", widget: "hidden", default: "category" }
+      - { label: "Name", name: "title", widget: "string" }
 
   - name: "photos"
     label: "Photos"
     folder: "src/data/photos"
+    identifier_field: image
     create: true
     fields:
-      - { label: "Name", name: "title", widget: "string" } # must be `title`
+      - { label: "Type", name: "type", widget: "hidden", default: "photo" }
+      - { label: "Name", name: "title", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - label: "Category"
         name: "category"
@@ -42,6 +46,7 @@ collections:
         name: "portfolio"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Index", name: "index", widget: "hidden", default: true }
           - { label: "Menu", name: "menu", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 1 }
@@ -49,28 +54,13 @@ collections:
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-          - label: "Images"
-            name: "images"
-            widget: "list"
-            fields:
-              - { label: "Image", name: image, widget: image }
-              - { label: "Description", name: description, widget: string, required: false }
-              - label: "Category"
-                name: "category"
-                widget: "relation"
-                collection: "categories"
-                valueField: "title"
-                displayFields:
-                  - "title"
-                searchFields:
-                  - "title"
-             
 
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "about" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Menu", name: "menu", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 2 }
 
@@ -84,6 +74,7 @@ collections:
         name: "services"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "services" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Menu", name: "menu", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 3 }
 
@@ -96,6 +87,7 @@ collections:
         name: "contact"
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "contact" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 4 }
 
           - { label: "Title", name: "title", widget: "string" }

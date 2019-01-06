@@ -26,6 +26,20 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/src/data/photos`,
+				name: `photos`,
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/src/data/categories`,
+				name: `categories`,
+			},
+		},
+		{
 			resolve: `gatsby-transformer-remark`,
 			options: {
 				plugins: [

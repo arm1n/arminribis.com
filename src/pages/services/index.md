@@ -1,5 +1,6 @@
 ---
 template: services
+type: page
 menu: true
 order: 3
 title: Services

@@ -1,5 +1,6 @@
 ---
 template: about
+type: page
 menu: true
 order: 2
 title: About
