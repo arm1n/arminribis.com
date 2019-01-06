@@ -94,20 +94,20 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
 // https://github.com/danielmahon/gatsby-remark-relative-images
 //
 exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
-
   const {
     internal: {
       type
     },
-    frontmatter: {
-      index
-    }
+    frontmatter
   } = node;
   
   // add `slug` field to node
   switch (type) {
     case 'MarkdownRemark': {
-      const value = index ? '/' : createFilePath({ node, getNode });
+      const value = !(frontmatter && frontmatter.index)
+        ? createFilePath({ node, getNode })
+        : '/';
+
       createNodeField({ name: `slug`, node, value });
       break;
     }
