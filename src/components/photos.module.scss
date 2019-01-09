@@ -1,0 +1,32 @@
+@import 'variables';
+
+//
+// NAVIGATION
+//
+.navigation {
+	text-align: center;
+}
+
+.navigation-item {
+	display: block;
+	font-weight: 500;
+	font-family: 'Madera';
+	font-size: $font-size-lg;
+}
+
+.navigation-item--active {
+	color: $color-white;
+}
+
+//
+// BACK BUTTON
+//
+.back-button {
+	display: flex;
+	margin-top: 5rem;
+	justify-content: center;
+}
+
+.back-button-arrow {
+	margin-right: 0.5rem;
+}

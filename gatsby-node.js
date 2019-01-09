@@ -99,14 +99,21 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
 // https://github.com/danielmahon/gatsby-remark-relative-images
 //
 exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
-  const frontmatter = node.frontmatter;
-  if (frontmatter === undefined) {
-    return;
-  }
+  // make relative image paths
+  fmImagesToRelative(node);
 
-  switch (frontmatter.type) {
+  const {
+    frontmatter: {
+      type = undefined,
+      index = false
+    } = {}
+  } = node;
+
+
+
+  switch (type) {
     case 'page': {
-      const value = !frontmatter.index
+      const value = !index
         ? createFilePath({ node, getNode })
         : '/';
 
@@ -118,7 +125,45 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
       // noop
     }
   }
+};
 
-  // make relative image paths
-  fmImagesToRelative(node);
+//
+// Create dummy field for `category` to avoid GraphQL errors on empty lists!
+// This is a TEMPORARY workaround until the following epic gets implemented:
+// @see: https://www.gatsbyjs.org/docs/node-apis/#setFieldsOnGraphQLNodeType
+// @see: https://github.com/gatsbyjs/gatsby/issues/4261
+//
+exports.setFieldsOnGraphQLNodeType = ({ type, actions: { createNodeField }, getNodes }) => {
+
+  const addFields = (node) => {
+    const {
+      frontmatter: {
+        category = '___DUMMY___',
+      } = {}
+    } = node;
+
+    // note: use `createNodeField` to make the
+    // field usable for `filter`, `group` etc.
+    createNodeField({
+      node,
+      name: 'category',
+      value: category
+    });
+  };
+
+  switch (type.name) {
+    case 'MarkdownRemark': {
+      const nodes = getNodes();
+      nodes.forEach(addFields);
+      break;
+    }
+
+    default: {
+      // noop
+    }
+  }
+
+  return {
+    /* no "default" fields */
+  };
 };

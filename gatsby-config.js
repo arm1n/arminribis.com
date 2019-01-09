@@ -14,15 +14,15 @@ module.exports = {
 	  	{
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				path: `${__dirname}/src/pages`,
-				name: `pages`,
-			},
-		},
-		{
-			resolve: `gatsby-source-filesystem`,
-			options: {
 				path: `${__dirname}/static/images`,
 				name: `images`,
+			},
+		},
+	  	{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/src/pages`,
+				name: `pages`,
 			},
 		},
 		{
@@ -39,21 +39,29 @@ module.exports = {
 				name: `categories`,
 			},
 		},
+		'gatsby-plugin-sharp',
+		'gatsby-transformer-sharp',
 		{
-			resolve: `gatsby-transformer-remark`,
+			resolve: 'gatsby-transformer-remark',
 			options: {
 				plugins: [
 					{
-						resolve: `gatsby-remark-relative-images`,
-					},
-					{
-						resolve: `gatsby-remark-images`,
+						resolve: 'gatsby-remark-relative-images',
 						options: {
-							maxWidth: 650,
+							name: 'images',
 						},
 					},
-				]
-			}
+					{
+						resolve: 'gatsby-remark-images',
+						options: {
+							// It's important to specify the maxWidth (in pixels) of
+							// the content container as this plugin uses this as the
+							// base for generating different widths of each image.
+							maxWidth: 2048,
+						},
+					},
+				],
+			},
 		},
 		`gatsby-plugin-netlify-cms`,
 	],

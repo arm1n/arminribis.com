@@ -2,13 +2,15 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
+import Photos from '../components/photos';
 import { HTML, Centered } from '../components/utils';
 
 export const PortfolioTemplate = ({ content }) => {
   return (
-    <Centered>
+    <div>
       <HTML content={content} />
-    </Centered>
+      <Photos />
+    </div>
   )
 };
 

@@ -52,6 +52,7 @@ const navigationRender = (data) => {
 		}
 	} = data;
 
+	// https://reactjs.org/docs/lists-and-keys.html
 	const items = edges.map((edge) => {
 
 		const {
