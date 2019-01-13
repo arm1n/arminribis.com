@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import Gallery from 'react-photo-gallery';
 
 import styles from './photos.module.scss';
 
@@ -19,35 +20,43 @@ const photosRender = (data) => {
 	data = data.allMarkdownRemark || { /* null */ };
 	const { group: categories = [] } = data;
 
-	const images = [];
+	const photos = [];
 
 	categories.forEach((category) => {
-		const { edges: photos = [] } = category;
+		const { edges = [] } = category;
 
-		// const c = images[category.fieldValue] = [];
+		edges.forEach((edge) => {
+      const { image } = edge.node.frontmatter;
+      console.log(image);
+      if (!image) {
+        return;
+      }
 
-		photos.forEach((photo) => {
-			const { image } = photo.node.frontmatter;
-      const { id, childImageSharp: { fluid } } = image;
-      const aspectRatio = round(fluid.aspectRatio, 2);
+      const {
+        id: key,
+        childImageSharp: {
+          fluid: {
+            src,
+            sizes,
+            srcSet
+          },
+          original: {
+            width,
+            height
+          }
+        }
+      } = image;
 
-      console.log(round(image.childImageSharp.fluid.aspectRatio, 2));
-			images.push(
-        <Img
-          key={id}
-          fluid={fluid}
-          className={styles.image}
-          data-ar={aspectRatio} />
-      );
+      photos.push({ key, src, sizes, srcSet, width, height });
 
-		})
+		});
 	});
 
-  	return (
-      <div className={styles.wrapper}>
-        {images}
-      </div>
-    );
+  return (
+    <Gallery
+      margin={5}
+      photos={photos}/>
+  );
 };
 
 const photosQuery = graphql`
@@ -70,10 +79,14 @@ const photosQuery = graphql`
               image {
               	id,
               	childImageSharp {
-	              fluid(maxWidth: 700) {
-	                ...GatsbyImageSharpFluid
-	              }
-	            }
+                  original {
+                    width,
+                    height
+                  },
+  	              fluid(maxWidth: 700) {
+  	                ...GatsbyImageSharpFluid
+  	              }
+  	            }
               }
             }
           }
