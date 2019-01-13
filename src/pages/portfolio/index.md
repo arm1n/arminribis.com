@@ -9,4 +9,5 @@ image: /images/arminribis_20180801_18_hp.jpg
 ---
 # Say cheeze!
 
-Photography from the heart of the alps and outside the box.
+Photography from the heart of the alps\
+and outside the box.
