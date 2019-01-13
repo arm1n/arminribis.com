@@ -21,9 +21,15 @@ $color-black: #000000;
  * LAYOUT
  */
 $layout-offset: 30px;
-$layout-margin: 50px;
+$layout-margin: 70px;
 
 $breakpoint-sm: 600px;
 $breakpoint-md: 960px;
 $breakpoint-lg: 1280px;
 $breakpoint-xl: 1980px;
+
+/**
+ * TRANSITION
+ */
+$transition-time: 0.15s;
+$transition-ease: ease;

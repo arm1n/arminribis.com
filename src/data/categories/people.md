@@ -1,5 +1,5 @@
 ---
 type: category
-title: People
+name: People
 ---
 

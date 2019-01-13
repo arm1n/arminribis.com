@@ -21,18 +21,18 @@ a {
 	color: $color-darkgrey;
 
 	text-decoration: none;
-	transition: color .15s ease;
+	transition: color $transition-time $transition-ease;
 
-	/* svg {
-		transition: all 0.15s ease;
-	} */
+	svg {
+		transition: all $transition-time $transition-ease;
+	}
 	
 	
 	&:hover {
 		color: $color-white;
 
-		/* svg {
+		svg {
 			fill: $color-white;
-		} */
+		}
 	}
 }

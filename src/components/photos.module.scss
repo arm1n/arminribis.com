@@ -3,30 +3,26 @@
 //
 // NAVIGATION
 //
-.navigation {
-	text-align: center;
-}
-
-.navigation-item {
-	display: block;
-	font-weight: 500;
-	font-family: 'Madera';
-	font-size: $font-size-lg;
-}
-
-.navigation-item--active {
-	color: $color-white;
-}
-
-//
-// BACK BUTTON
-//
-.back-button {
+.wrapper {
 	display: flex;
-	margin-top: 5rem;
-	justify-content: center;
+  	margin: .5em -1em .5em -1.5em;
+
+  	/*@media (min-width: 40em) {
+	margin: .5em 0 .5em -.5em;
+	// setting the left margin at -.5em and the right at 0 offsets the grid to account for the gutters
+	}*/
 }
 
-.back-button-arrow {
-	margin-right: 0.5rem;
+.image {
+  flex: 0 auto;
+  margin: 0 auto;
+  padding: .5em 0 0 .5em;
+  width: 100%;
+
+
+
+  @media (min-width: 40em) {
+    flex: 0; // flex-basis set at 0 rather than 100%
+    flex: .75 0%;
+  }
 }

@@ -38,7 +38,7 @@ Logo.propTypes = {
 
 const Contact = ({ label }) => (
 	<Link
-		to='/contact'
+		to='/contact/'
 		data-label={label}
 		className={styles.contactLink}
 		activeClassName={styles.contactLinkActive}>
@@ -79,7 +79,7 @@ class Menu extends Component {
 		} = this;
 
 		return (
-			<nav>
+			<nav className={styles.nav}>
 				<a
 					onClick={this.toggle}
 					className={styles.menuToggle}

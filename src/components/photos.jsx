@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-// import { CloseIcon } from './icons';
-import styles from './navigation.module.scss';
+import styles from './photos.module.scss';
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
 
 const Photos = () => (
 	<StaticQuery
@@ -25,18 +28,26 @@ const photosRender = (data) => {
 
 		photos.forEach((photo) => {
 			const { image } = photo.node.frontmatter;
-			const { id, childImageSharp: { fluid } } = image;
+      const { id, childImageSharp: { fluid } } = image;
+      const aspectRatio = round(fluid.aspectRatio, 2);
 
-			// images[category.fieldValue].push(<Img fluid={fluid}/>)
-
-			images.push(<Img key={id} fluid={fluid}/>)
+      console.log(round(image.childImageSharp.fluid.aspectRatio, 2));
+			images.push(
+        <Img
+          key={id}
+          fluid={fluid}
+          className={styles.image}
+          data-ar={aspectRatio} />
+      );
 
 		})
 	});
 
-	console.log(images);
-
-  	return (<div id='images'>{images}</div>);
+  	return (
+      <div className={styles.wrapper}>
+        {images}
+      </div>
+    );
 };
 
 const photosQuery = graphql`
@@ -55,7 +66,7 @@ const photosQuery = graphql`
         edges {
           node {
             frontmatter {
-              title,
+              name,
               image {
               	id,
               	childImageSharp {

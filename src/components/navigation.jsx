@@ -85,11 +85,6 @@ const navigationRender = (data) => {
 const navigationQuery = graphql`
 	query navigationQuery {
 		allSitePage(
-			filter: {
-				context: {
-					menu: { eq:true }
-				}
-			},
 			sort: {
 				fields: [context___order],
 				order: ASC

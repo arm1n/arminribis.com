@@ -4,10 +4,7 @@
 // WRAPPER
 //
 .wrapper {
-	$margin: $layout-offset + $layout-margin;
-
-	margin-right: $margin;
-	margin-left: $margin;
+	margin: 0 $layout-offset + $layout-margin;
 }
 
 .main {
@@ -18,7 +15,7 @@
 // LOGO
 //
 .logo-link {
-	z-index: 1;
+	z-index: 2;
 	position: fixed;
 	top: $layout-offset;
 	left: $layout-offset;
@@ -32,9 +29,14 @@
 //
 // MENU
 //
+.nav {
+	z-index: 1;
+	position: relative;
+}
+
 .menu-toggle {
 	top: 50%;
-	z-index: 1;
+	z-index: 2;
 	position: fixed;
 
 	width: 40px;
@@ -58,7 +60,7 @@
 .contact-link {
 	top: 50%;
 	right: 0;
-	z-index: 1;
+	z-index: 2;
 	position: fixed;
 
 	text-transform: uppercase;
@@ -74,7 +76,7 @@
 		color: $color-white;
 		content: attr(data-label);
 
-		transition: width 0.15s ease-in-out;
+		transition: width (2 * $transition-time) $transition-ease;
 	}
 
 	&:hover, 

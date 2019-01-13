@@ -1,0 +1,54 @@
+@import 'variables';
+
+.wrapper {}
+
+.teaser {
+	height: 100vh;
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: column;
+	box-sizing: border-box;
+	justify-content: center;
+	padding: 100px 0 100px 20px; /* contact = 20px, menu = 40px -> 20px offset */
+}
+
+.image {
+	width: 100%;
+}
+
+.scroll {
+	text-align: center;
+	position: absolute;
+	bottom: $layout-offset;
+}
+
+.scroll-label {
+	display: block;
+	text-transform: uppercase;
+}
+
+.scroll-icon {
+	display: block;
+	margin: 10px 0 0;
+	animation: ScrollAnimation 2s ease 0s infinite;
+}
+
+.scroll-arrow {
+	display: inline-block;
+	transform: rotate(-90deg);
+}
+
+@keyframes ScrollAnimation {
+    0% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-20%)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}

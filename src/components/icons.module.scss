@@ -6,7 +6,7 @@
 .menu {
 	stroke: $color-darkgrey;
 	transform-origin: 50% 50%;
-	transition: transform .3s ease;
+	transition: transform (2 * $transition-time) $transition-ease;
 
 	&.menu--active {
 		stroke: $color-white;
@@ -39,7 +39,7 @@
 
 		visibility: hidden;
 		transform-origin: 50% 50%;
-		transition: stroke-dashoffset .5s linear 0.3s;
+		transition: stroke-dashoffset (3 * $transition-time)  linear (2 * $transition-time) ;
 	}
 
 	.menu-lines {
@@ -51,7 +51,7 @@
 
 		&, line {
 			transform-origin: 50% 50%;
-			transition: transform .3s ease;
+			transition: transform (2 * $transition-time) $transition-ease;
 		}		
 	}
 }

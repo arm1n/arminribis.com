@@ -8,21 +8,21 @@ public_folder: /images
 collections:
   - name: "categories"
     label: "Categories"
-    identifier_field: title
+    identifier_field: name
     folder: "src/data/categories"
     create: true
     fields:
       - { label: "Type", name: "type", widget: "hidden", default: "category" }
-      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
 
   - name: "photos"
     label: "Photos"
     folder: "src/data/photos"
-    identifier_field: image
+    identifier_field: name
     create: true
     fields:
       - { label: "Type", name: "type", widget: "hidden", default: "photo" }
-      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - label: "Category"
         name: "category"
@@ -48,11 +48,11 @@ collections:
           - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Index", name: "index", widget: "hidden", default: true }
-          - { label: "Menu", name: "menu", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 1 }
 
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "string" }
+          - { label: "Image", name: "image", widget: "image" }
           - { label: "Body", name: "body", widget: "markdown" }
 
       - file: "src/pages/about/index.md"
@@ -61,7 +61,6 @@ collections:
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "about" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
-          - { label: "Menu", name: "menu", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 2 }
 
           - { label: "Title", name: "title", widget: "string", required: true }
@@ -75,7 +74,6 @@ collections:
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "services" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
-          - { label: "Menu", name: "menu", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 3 }
 
           - { label: "Title", name: "title", widget: "string" }
