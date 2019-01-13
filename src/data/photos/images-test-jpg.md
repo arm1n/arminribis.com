@@ -1,7 +1,7 @@
 ---
 type: photo
 title: Test 4
-image: /images/test.jpg
+image: /images/stelvio.jpg
 category: Landscape
 ---
 
