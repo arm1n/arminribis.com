@@ -1,5 +1,5 @@
 ---
 type: category
-name: Sport
+name: Sports
 ---
 
