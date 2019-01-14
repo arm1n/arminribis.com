@@ -1,61 +1,124 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { Link, StaticQuery, graphql } from 'gatsby';
 import Gallery from 'react-photo-gallery';
 
 import styles from './photos.module.scss';
 
-function round(value, decimals) {
-  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-}
-
 const Photos = () => (
 	<StaticQuery
 		query={photosQuery}
-        render={photosRender} />
+    render={photosRender} />
+);
+
+const Photo = ({ photo }) => (
+  <Img 
+    fluid={photo.fluid}
+    style={
+      {
+        width: photo.width,
+        height: photo.height
+      }
+    }
+    className={styles.photo} />
 );
 
 const photosRender = (data) => {
-	data = data.allMarkdownRemark || { /* null */ };
-	const { group: categories = [] } = data;
+	const {
+    group: groups = []
+  } = data.allMarkdownRemark || { /* null */};
 
-	const photos = [];
+  let photos = [];  
+  const navItems = [];
+  const collection = {};
 
-	categories.forEach((category) => {
-		const { edges = [] } = category;
-
-		edges.forEach((edge) => {
-      const { image } = edge.node.frontmatter;
-      console.log(image);
-      if (!image) {
-        return;
-      }
-
+  const mapImagesToPhotos = (images) => {
+    return images.map((image) => {
       const {
-        id: key,
-        childImageSharp: {
-          fluid: {
-            src,
-            sizes,
-            srcSet
-          },
-          original: {
-            width,
-            height
-          }
+        node: {
+          frontmatter: {
+            image: {
+              id: key,
+              childImageSharp: {
+                fluid,
+                fluid: {
+                  src
+                },
+                original: {
+                  width,
+                  height
+                }
+              }
+            },
+            name
+          } 
         }
       } = image;
 
-      photos.push({ key, src, sizes, srcSet, width, height });
+      let x = {
+        key,
+        src,
+        name,
+        fluid,
+        width,
+        height
+      };
 
-		});
+      console.log(x);
+
+      return x;
+    });
+  };
+
+  const addCategoryToNavItems = (category) => {
+
+    const key = category;
+    const state = {
+      category
+    };
+
+    navItems.push(
+      <Link
+        key={key}
+        state={state}
+        className={styles.navItem}
+        to={`?category=${category}`}>
+        {category}
+      </Link>
+    );
+  };
+
+	groups.forEach((group) => {
+		const {
+      fieldValue,
+      edges: images = [],
+      
+    } = group;
+
+    let category = fieldValue;
+
+    addCategoryToNavItems(category);
+    collection[category] = mapImagesToPhotos(images);
 	});
 
+  photos = collection['Landscape']; 
+
   return (
-    <Gallery
-      margin={5}
-      photos={photos}/>
+    <div className={styles.wrapper}>
+
+      <div className={styles.filter}>
+        <nav className={styles.nav}>
+          {navItems}
+        </nav>
+      </div>
+
+      <div className={styles.photos}>
+        <Gallery
+          photos={photos}
+          ImageComponent={Photo} />
+      </div>
+    </div>
   );
 };
 

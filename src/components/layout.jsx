@@ -9,16 +9,18 @@ import { LogoImageIcon, MenuIcon } from './icons';
 
 import '../styles/main.scss';
 
-const Layout = ({ children }) => (
-	<div className={styles.wrapper}>
-		<Logo />
-		<Menu />
-		<Contact/>
-    	<main className={styles.main}>
-    		{children}
-    	</main>
-  	</div>
-);
+const Layout = ({ children }) => {
+	return (
+		<div className={styles.wrapper}>
+			<Logo />
+			<Menu />
+			<Contact/>
+	    	<main className={styles.main}>
+	    		{children}
+	    	</main>
+	  	</div>
+	);
+}
 
 export default Layout;
 

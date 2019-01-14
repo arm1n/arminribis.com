@@ -12,7 +12,9 @@ collections:
     folder: "src/data/categories"
     create: true
     fields:
+      - { label: "Template", name: "template", widget: "hidden", default: "category" }
       - { label: "Type", name: "type", widget: "hidden", default: "category" }
+      - { label: "Slug", name: "slug", widget: "hidden", default: "{{slug}}" }
       - { label: "Name", name: "name", widget: "string" }
 
   - name: "photos"
@@ -47,7 +49,6 @@ collections:
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
-          - { label: "Index", name: "index", widget: "hidden", default: true }
           - { label: "Order", name: "order", widget: "hidden", default: 1 }
 
           - { label: "Title", name: "title", widget: "string", required: true }

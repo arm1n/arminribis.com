@@ -2,7 +2,7 @@
  * BODY
  */
 body {
-	line-height: 1.3;
+	// line-height: 1.3;
 	color: $color-darkgrey;
 	background: $color-lightgrey;
 }
@@ -19,20 +19,17 @@ p {
  */
 a {
 	color: $color-darkgrey;
-
 	text-decoration: none;
 	transition: color $transition-time $transition-ease;
 
-	svg {
-		transition: all $transition-time $transition-ease;
-	}
-	
-	
 	&:hover {
 		color: $color-white;
-
 		svg {
 			fill: $color-white;
 		}
+	}
+
+	svg {
+		transition: all $transition-time $transition-ease;
 	}
 }

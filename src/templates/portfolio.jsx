@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -15,56 +16,94 @@ import styles from './portfolio.module.scss';
 smoothscroll.polyfill();
 
 export class PortfolioTemplate extends React.Component {
-
   contentRef = React.createRef()
 
-  scrollToExplore = (event) => {
-    event.preventDefault();
+  scrollToRef = (ref = {}) => {
+    const {
+      current: {
+        offsetTop: top = 0
+      } = {}
+    } = ref;
+    const behavior = 'smooth';
 
-    const { current: element } = this.contentRef;
-    element.scrollIntoView({ behavior: 'smooth' });
+    window.scrollTo({ top, behavior });
+  }
+
+  scroll = (event) => {
+    event.preventDefault();
+    this.scrollToRef(this.contentRef);
   }
 
   render() {
 
-    const { content, image } = this.props;
+    const {
+      content,
+      image: {
+        childImageSharp: {
+          fluid
+        }
+      },
+      logoLabel,
+      scrollLabel
+    } = this.props;
 
     return (
       <div className={styles.wrapper}>
-        <div
-          className={styles.teaser}>
+        
+        <div className={styles.teaser}>
           <Img
-            className={styles.image}
-            fluid={image.childImageSharp.fluid}/>
+            fluid={fluid}
+            className={styles.image} />
+
+          <div className={styles.logo}>
+            {logoLabel} 
+          </div>
+
           <a
             href='#explore'
-            className={styles.scroll}
-            onClick={this.scrollToExplore}>
-            <span
-              className={styles.scrollLabel}>
-              Explore
+            onClick={this.scroll}
+            className={styles.scroll}>
+            <span className={styles.scrollLabel}>
+              {scrollLabel}
             </span>
-            <span
-              className={styles.scrollIcon}>
-              <ArrowIcon
-                className={styles.scrollArrow} />
+            <span className={styles.scrollIcon}>
+              <ArrowIcon className={styles.scrollArrow} />
             </span>
           </a>
         </div>
+
         <div
           id='explore'
           ref={this.contentRef}
           className={styles.explore}>
-          <HTML id='explore' content={content} />
-          <Photos />
+          
+          <div className={styles.content}>
+            <HTML
+              content={content} />
+          </div>
+
+          <div className={styles.photos}>
+            <Photos />
+          </div>
         </div>
       </div>
     );
   }
 };
 
-const Portfolio = ({ data }) => {
-  const { 
+PortfolioTemplate.defaultProps = {
+  logoLabel: 'Armin Ribis',
+  scrollLabel: 'Explore',
+  selectedCategory: null
+};
+
+PortfolioTemplate.propTypes = {
+  content: PropTypes.node
+};
+
+const Portfolio = ({ data, location }) => {
+
+  const {
     markdownRemark: {
       html,
       frontmatter: {
@@ -73,13 +112,23 @@ const Portfolio = ({ data }) => {
     }
   } = data;
 
+  /*
+  const {
+    state: {
+      category = null
+    } = {}
+  } = location || {};
+
+  console.log(category);
+  */
+
   return (
     <Layout>
       <PortfolioTemplate
         image={image}
         content={html} />
     </Layout>
-  )
+  );
 };
 
 export const portfolioQuery = graphql`

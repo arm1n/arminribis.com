@@ -39,6 +39,12 @@ module.exports = {
 				name: `categories`,
 			},
 		},
+		{
+			resolve: `gatsby-plugin-create-client-paths`,
+			options: {
+				prefixes: [`/category/*`]
+			},
+		},
 		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
 		{

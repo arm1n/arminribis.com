@@ -19,7 +19,8 @@ export const HTML = (props) => {
 	return (
 		<div
 			{...props}
-			dangerouslySetInnerHTML={html}/>
+			className={styles.htmlWrapper}
+			dangerouslySetInnerHTML={html} />
 	);
 };
 
@@ -28,8 +29,8 @@ HTML.propTypes = {
 };
 
 export const Centered = ({ children }) => (
-  <div className={styles.wrapper}>
-  	<div className={styles.container}>
+  <div className={styles.centeredWrapper}>
+  	<div className={styles.centeredContainer}>
   		{children}
   	</div>
   </div>

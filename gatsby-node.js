@@ -40,7 +40,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
         context: {
           id,
           order,
-          title
+          title,
+          template
         }
       })
     });
@@ -65,8 +66,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
       allMarkdownRemark(
         filter: {
           frontmatter: {
-            template: {
-              ne: null
+            type: {
+              eq: "page"
             }
           }
         }) {
@@ -79,6 +80,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
             frontmatter {
               template,
               title,
+              type,
               order
             }
           }
@@ -101,19 +103,23 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
 
   const {
     frontmatter: {
-      type = undefined,
-      index = false
+      template,
+      type
     } = {}
   } = node;
 
-
-
   switch (type) {
     case 'page': {
-      const value = !index
+      const value = template !== 'portfolio'
         ? createFilePath({ node, getNode })
         : '/';
 
+      createNodeField({ name: `slug`, node, value });
+      break;
+    }
+
+    case 'category': {
+      const value = createFilePath({ node, getNode });
       createNodeField({ name: `slug`, node, value });
       break;
     }

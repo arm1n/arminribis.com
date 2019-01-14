@@ -1,28 +1,15 @@
 @import 'variables';
 
-//
-// NAVIGATION
-//
-.wrapper {
-	display: flex;
-  	margin: .5em -1em .5em -1.5em;
+$margin: 0.5rem;
 
-  	/*@media (min-width: 40em) {
-	margin: .5em 0 .5em -.5em;
-	// setting the left margin at -.5em and the right at 0 offsets the grid to account for the gutters
-	}*/
+.photos {
+	margin: -$margin;
 }
 
-.image {
-  flex: 0 auto;
-  margin: 0 auto;
-  padding: .5em 0 0 .5em;
-  width: 100%;
+.photo {
+	flex: 1 1 auto;
 
-
-
-  @media (min-width: 40em) {
-    flex: 0; // flex-basis set at 0 rather than 100%
-    flex: .75 0%;
-  }
+	img {
+		margin: $margin;
+	}
 }

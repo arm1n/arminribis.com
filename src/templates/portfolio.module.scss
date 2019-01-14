@@ -1,7 +1,15 @@
 @import 'variables';
 
-.wrapper {}
+//
+// WRAPPER
+//
+.wrapper {
 
+}
+
+//
+// TEASER
+//
 .teaser {
 	height: 100vh;
 	display: flex;
@@ -10,14 +18,39 @@
 	flex-direction: column;
 	box-sizing: border-box;
 	justify-content: center;
-	padding: 100px 0 100px 20px; /* contact = 20px, menu = 40px -> 20px offset */
+	padding: 100px 0 100px 0; // 20px; /* contact = 20px, menu = 40px -> 20px offset */
 }
+
 
 .image {
 	width: 100%;
+	flex: 1 1 auto;
 }
 
+//
+// LOGO
+//
+.logo {
+	width: 300px;
+	right: 100px;
+	bottom: 200px;
+	position: absolute;
+
+	color: $color-white;
+	
+	text-align: right;
+	font-weight: bold;
+	font-style: italic;
+	font-family: 'Madera';
+	font-size: $font-size-lg;
+}
+
+
+//
+// SCROLL
+//
 .scroll {
+	margin: 0.5rem 0 0;
 	text-align: center;
 	position: absolute;
 	bottom: $layout-offset;
@@ -30,7 +63,7 @@
 
 .scroll-icon {
 	display: block;
-	margin: 10px 0 0;
+	margin: 15px 0 0;
 	animation: ScrollAnimation 2s ease 0s infinite;
 }
 
@@ -51,4 +84,19 @@
     100% {
         transform: translateY(0)
     }
+}
+
+//
+// CONTENT
+//
+
+.content {
+	margin: 5rem 0;
+}
+
+//
+// PHOTOS
+//
+.photos {
+	margin: 5rem 0 10rem;
 }
