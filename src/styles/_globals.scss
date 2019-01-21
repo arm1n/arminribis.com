@@ -24,12 +24,13 @@ a {
 
 	&:hover {
 		color: $color-white;
-		svg {
-			fill: $color-white;
-		}
 	}
+}
 
-	svg {
-		transition: all $transition-time $transition-ease;
-	}
+/**
+ * SVG
+ */
+svg {
+	fill: $color-darkgrey;
+	transition: fill $transition-time $transition-ease;
 }

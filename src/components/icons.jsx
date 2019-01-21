@@ -52,12 +52,13 @@ export const InstagramIcon = (props) => (
   <Icon icon={InstagramSVG} {...props}/>
 );
 
-export const MenuIcon = ({ isActive }) => (
+export const MenuIcon = ({ isActive, className }) => (
 	<svg
 		viewBox='0 0 40 40'
 		className={`
-			${styles.menu} 
-			${isActive ? styles.menuActive : ''}
+			${styles.menu}
+			${className ? ` ${className}` : ''}
+			${isActive ? ` ${styles.menuActive}` : ''}
 		`}>
 		<g className={styles.menuLines}>
 			<line
@@ -91,6 +92,11 @@ export const MenuIcon = ({ isActive }) => (
 	</svg>
 );
 
+MenuIcon.propTypes = {
+	isActive: PropTypes.bool.isRequired,
+	className: PropTypes.string
+};
+
 const Icon = (props) => {
 	const { icon: { id, viewBox } } = props;
 
@@ -100,6 +106,8 @@ const Icon = (props) => {
 			icon: undefined // remove icon
 		}
 	};
+
+	delete props.icon;
 
 	return (
 		<svg viewBox={viewBox} {...props}>
@@ -111,7 +119,7 @@ const Icon = (props) => {
 Icon.defaultProps = {
 	width: 25,
 	height: 25
-}
+};
 
 Icon.propTypes = {
 	width: PropTypes.oneOfType([
@@ -127,6 +135,6 @@ Icon.propTypes = {
 		content: PropTypes.string.isRequired,
 		viewBox: PropTypes.string.isRequired
 	})
-}
+};
 
 export default Icon;

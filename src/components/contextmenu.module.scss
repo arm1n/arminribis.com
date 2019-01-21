@@ -1,0 +1,14 @@
+@import 'variables';
+
+//
+// MENU
+//
+.context-menu {
+	z-index: 9999;
+	padding: 0.5rem;
+    position: fixed;
+    max-width: 300px;
+    background: white;
+    font-size: $font-size-xs;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, .5);
+}

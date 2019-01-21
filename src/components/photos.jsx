@@ -1,127 +1,278 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
-import { Link, StaticQuery, graphql } from 'gatsby';
+import React, { Component } from 'react';
+import { StaticQuery, graphql, Link, navigate} from 'gatsby';
 import Gallery from 'react-photo-gallery';
+import Img from 'gatsby-image';
+
+import LightBox from './lightbox';
+import { AnimatedLink } from './utils';
+import slugify from '../utils/slugify';
+import { queryString, buildQuery } from '../utils/url';
 
 import styles from './photos.module.scss';
 
-const Photos = () => (
-	<StaticQuery
-		query={photosQuery}
-    render={photosRender} />
-);
+const PARAM_PHOTO = 'p';
+const PARAM_CATEGORY = 'f';
 
-const Photo = ({ photo }) => (
-  <Img 
-    fluid={photo.fluid}
-    style={
-      {
-        width: photo.width,
-        height: photo.height
-      }
+//
+// PHOTOS
+//
+export class Photos extends Component {
+  images = {}
+  mapped = {}
+
+  getCategory = () => {
+    // a) try to get from query param
+    const key = queryString(PARAM_CATEGORY);
+    if (key in this.mapped) {
+      return this.mapped[key];
     }
-    className={styles.photo} />
-);
 
-const photosRender = (data) => {
-	const {
-    group: groups = []
-  } = data.allMarkdownRemark || { /* null */};
+    // b) use only the first category
+    for (let key in this.mapped) {
+      return this.mapped[key];
+    }
 
-  let photos = [];  
-  const navItems = [];
-  const collection = {};
+    // c) no categories
+    return {};
+  }
 
-  const mapImagesToPhotos = (images) => {
-    return images.map((image) => {
-      const {
-        node: {
-          frontmatter: {
-            image: {
-              id: key,
-              childImageSharp: {
-                fluid,
-                fluid: {
-                  src
-                },
-                original: {
-                  width,
-                  height
-                }
+  getPhoto = () => {
+    // a) try to get from query param
+    const key = queryString(PARAM_PHOTO);
+    if (key in this.images) {
+      return this.images[key];
+    }
+
+    // b) no photo
+    return null;
+  }
+
+  getNext = () => {
+    const { items = [] } = this.getCategory();
+    const photo = this.getPhoto();
+    if (photo === null) {
+      return null;
+    }
+
+    return items[photo.index + 1] || null;
+  }
+
+  getPrev = () => {
+    const { items = [] } = this.getCategory();
+    const photo = this.getPhoto();
+    if (photo === null) {
+      return null;
+    }
+
+    return items[photo.index - 1] || null;
+  }
+
+  mapImage = ({ image }) => {
+
+    const {
+      node: {
+        frontmatter: {
+          image: {
+            id: key,
+            childImageSharp: {
+              fluid,
+              fluid: {
+                src
+              },
+              original: {
+                width,
+                height
               }
-            },
-            name
-          } 
-        }
-      } = image;
+            }
+          },
+          description: caption,
+          name
+        } 
+      }
+    } = image;
 
-      let x = {
-        key,
-        src,
-        name,
-        fluid,
-        width,
-        height
-      };
-
-      console.log(x);
-
-      return x;
-    });
-  };
-
-  const addCategoryToNavItems = (category) => {
-
-    const key = category;
-    const state = {
-      category
+    image = {
+      key,
+      src,
+      name,
+      width,
+      fluid,
+      height,
+      caption
     };
 
-    navItems.push(
-      <Link
-        key={key}
-        state={state}
-        className={styles.navItem}
-        to={`?category=${category}`}>
-        {category}
-      </Link>
+    return image;
+  }
+
+  mapData = ({ data }) => {
+    const {
+      group: categories = []
+    } = data.allMarkdownRemark || { /* null */};
+
+    const mapImages = (images) => {
+      return images.map((image, index) => {
+        image = this.mapImage({ image });
+        this.images[image.key] = image;
+
+        image.index = index;
+        
+        return image;
+      });
+    };
+
+    const initFlag = '__initialized';
+    if (initFlag in this.images) {
+      return;
+    }
+
+    categories.forEach((group) => {
+      const {
+        edges: images = [],
+        fieldValue: label
+      } = group;
+
+      const slug = slugify(label);
+      const items = mapImages(images);
+      this.mapped[slug] = { slug, label, items };
+    });
+
+    this.images[initFlag] = true;
+  }
+
+  onPrev = (event) => {
+    event.stopPropagation();
+
+    const prev = this.getPrev();
+    if (prev === null) {
+      return;
+    }
+
+    const query = buildQuery(
+      PARAM_PHOTO,
+      prev.key
     );
-  };
 
-	groups.forEach((group) => {
-		const {
-      fieldValue,
-      edges: images = [],
-      
-    } = group;
+    navigate(query);
+  }
 
-    let category = fieldValue;
+  onNext = (event) => {
+    event.stopPropagation();
 
-    addCategoryToNavItems(category);
-    collection[category] = mapImagesToPhotos(images);
-	});
+    const next = this.getNext();
+    if (next === null) {
+      return;
+    }
 
-  photos = collection['Landscape']; 
+    const query = buildQuery(
+      PARAM_PHOTO,
+      next.key
+    );
+
+    navigate(query);
+  }
+
+  onClose = (event) => {
+    event.stopPropagation();
+    
+    const query = buildQuery(
+      PARAM_PHOTO,
+      null
+    );
+
+    navigate(query);
+  }
+
+  render() {
+    return (
+    	<StaticQuery
+    		query={photosQuery}
+        render={
+          (data) => {
+            this.mapData({ data });
+
+            const {
+              slug: category,
+              items: photos = []
+            } = this.getCategory();
+
+            return (
+              <div className={styles.wrapper}>
+                <Categories
+                  data={this.mapped} 
+                  current={category} />
+
+                <div className={styles.photos}>
+                  <Gallery
+                    photos={photos}
+                    ImageComponent={Photo} />
+                </div>
+
+                <LightBox
+                    onNext={this.onNext}
+                    onPrev={this.onPrev}
+                    onClose={this.onClose} 
+                    photo={this.getPhoto()}
+                    hasNext={!!this.getNext()}
+                    hasPrev={!!this.getPrev()} />
+              </div>
+            );
+          }
+        }
+      />
+    );
+  }
+};
+
+//
+// GALLERY PHOTO
+//
+const Photo = ({ photo, index, onClick }) => {
+  const path = buildQuery(PARAM_PHOTO, photo.key);
+  const { width, height } = photo;
+  const style = { width, height };
 
   return (
-    <div className={styles.wrapper}>
+    <Link to={path}>
+      <Img 
+        style={style}
+        fluid={photo.fluid}
+        className={styles.photo} />
+    </Link>
+  );
+}
 
-      <div className={styles.filter}>
-        <nav className={styles.nav}>
-          {navItems}
-        </nav>
-      </div>
+//
+// CATEGORIES NAV
+//
+const Categories = ({ data, current }) => {
 
-      <div className={styles.photos}>
-        <Gallery
-          photos={photos}
-          ImageComponent={Photo} />
-      </div>
-    </div>
+  const items = [];
+  
+  for (let slug in data) {
+    const { label } = data[slug];
+    const active = slug === current;
+    const path = buildQuery(PARAM_CATEGORY, slug);
+
+    items.push(
+      <AnimatedLink
+        key={slug}
+        path={path}
+        label={label}
+        active={active} />
+    );
+  }
+
+  return (
+    <nav 
+      className={styles.categories}>
+      {items}
+    </nav>
   );
 };
 
+//
+// PHOTO QUERY (STATIC)
+//
 const photosQuery = graphql`
   query photosQuery {
     allMarkdownRemark(
@@ -139,6 +290,7 @@ const photosQuery = graphql`
           node {
             frontmatter {
               name,
+              description,
               image {
               	id,
               	childImageSharp {
@@ -146,7 +298,7 @@ const photosQuery = graphql`
                     width,
                     height
                   },
-  	              fluid(maxWidth: 700) {
+  	              fluid(quality: 100) {
   	                ...GatsbyImageSharpFluid
   	              }
   	            }

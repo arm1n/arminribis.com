@@ -1,41 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import smoothscroll from 'smoothscroll-polyfill';
 
-import Layout from '../components/layout';
 import Photos from '../components/photos';
-import { HTML } from '../components/utils';
-
 import { ArrowIcon } from '../components/icons';
+import { AnimatedLink, HTML } from '../components/utils';
 
 import styles from './portfolio.module.scss';
 
 // kick off the smooth scroll polyfill
 smoothscroll.polyfill();
 
-export class PortfolioTemplate extends React.Component {
+export class PortfolioTemplate extends Component {
   contentRef = React.createRef()
 
-  scrollToRef = (ref = {}) => {
+  scroll = (event) => {
+    event.preventDefault();
+
     const {
       current: {
         offsetTop: top = 0
-      } = {}
-    } = ref;
+      }
+    } = this.contentRef;
+
     const behavior = 'smooth';
 
     window.scrollTo({ top, behavior });
   }
 
-  scroll = (event) => {
-    event.preventDefault();
-    this.scrollToRef(this.contentRef);
-  }
-
   render() {
-
     const {
       content,
       image: {
@@ -59,27 +54,30 @@ export class PortfolioTemplate extends React.Component {
             {logoLabel} 
           </div>
 
-          <a
-            href='#explore'
-            onClick={this.scroll}
-            className={styles.scroll}>
-            <span className={styles.scrollLabel}>
-              {scrollLabel}
-            </span>
-            <span className={styles.scrollIcon}>
-              <ArrowIcon className={styles.scrollArrow} />
-            </span>
-          </a>
+          <div className={styles.scroll}>
+            <AnimatedLink
+              path='#explore'
+              internal={false}
+              label={scrollLabel}
+              onClick={this.scroll}>
+              <span className={styles.scrollLabel}>
+                {scrollLabel}
+              </span>
+              <span className={styles.scrollIcon}>
+                <ArrowIcon className={styles.scrollArrow} />
+              </span>
+            </AnimatedLink>
+          </div>
+
         </div>
 
         <div
           id='explore'
           ref={this.contentRef}
-          className={styles.explore}>
+          className={styles.content}>
           
-          <div className={styles.content}>
-            <HTML
-              content={content} />
+          <div className={styles.html}>
+            <HTML content={content} />
           </div>
 
           <div className={styles.photos}>
@@ -101,33 +99,20 @@ PortfolioTemplate.propTypes = {
   content: PropTypes.node
 };
 
-const Portfolio = ({ data, location }) => {
-
+const Portfolio = ({ data }) => {
   const {
     markdownRemark: {
-      html,
+      html: content,
       frontmatter: {
         image
       }
     }
   } = data;
 
-  /*
-  const {
-    state: {
-      category = null
-    } = {}
-  } = location || {};
-
-  console.log(category);
-  */
-
   return (
-    <Layout>
       <PortfolioTemplate
         image={image}
-        content={html} />
-    </Layout>
+        content={content} />
   );
 };
 

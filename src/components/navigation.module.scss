@@ -4,9 +4,13 @@
 // NAVIGATION
 //
 .navigation {
-	z-index: 3;
-	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: fixed;
 	text-align: center;
+	background: $color-lightgrey;
 }
 
 .navigation-item {

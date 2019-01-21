@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
 import { HTML, Centered } from '../components/utils';
 import { BackButton } from '../components/navigation';
 
@@ -22,9 +21,7 @@ const About = ({ data }) => {
   } = data;
 
   return (
-    <Layout>
-      <AboutTemplate content={html} />
-    </Layout>
+    <AboutTemplate content={html} />
   )
 };
 

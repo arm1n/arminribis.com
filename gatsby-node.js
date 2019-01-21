@@ -118,12 +118,6 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
       break;
     }
 
-    case 'category': {
-      const value = createFilePath({ node, getNode });
-      createNodeField({ name: `slug`, node, value });
-      break;
-    }
-
     default: {
       // noop
     }

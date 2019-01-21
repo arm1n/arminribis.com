@@ -1,0 +1,94 @@
+@import 'variables';
+
+$icon-size: 2rem;
+$button-size: 3rem;
+$button-offset: 0.5rem;
+$modal-padding: 5rem;
+
+//
+// MODAL
+//
+.modal {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 5;
+	position: fixed;
+	cursor: zoom-out;
+	padding: $modal-padding;
+	background: rgba(0, 0, 0, 1);
+}
+
+//
+// Lightbox
+//
+.lightbox {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.lightbox-link {
+	flex: 1 1 auto;
+	cursor: pointer;
+}
+
+.lightbox-image {
+	margin: auto;
+}
+
+.prev,
+.next,
+.close {
+	border: none;
+	outline: none;
+	display: flex;
+	cursor: pointer;
+	background: none;
+	position: absolute;
+	align-items: center;
+	width: $button-size;
+	height: $button-size;
+	fill: $color-darkgrey;
+
+	&:hover {
+		fill: $color-lightgrey;
+	}
+}
+
+.close {
+	top: $button-offset;
+	right: $button-offset;
+}
+
+.prev,
+.next {
+	top: 50%;
+	margin-top: -$button-size/2;
+}
+
+.next {
+	right: $button-offset;
+	transform: rotate(180deg);
+}
+
+.prev {
+	left: $button-offset;
+}
+
+.icon {
+	fill: inherit;
+	width: $icon-size;
+	height: $icon-size;
+}
+
+.caption {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 2rem;
+	position: fixed;
+	text-align: center;
+}

@@ -2,32 +2,42 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-import { Centered } from './utils';
+import { AnimatedLink } from './utils';
 import Navigation from './navigation';
+import ContextMenu from './contextmenu';
 import styles from './layout.module.scss';
 import { LogoImageIcon, MenuIcon } from './icons';
 
 import '../styles/main.scss';
 
-const Layout = ({ children }) => {
-	return (
-		<div className={styles.wrapper}>
-			<Logo />
-			<Menu />
-			<Contact/>
-	    	<main className={styles.main}>
-	    		{children}
-	    	</main>
-	  	</div>
-	);
-}
+const Layout = ({ children }) => (
+	<div className={styles.wrapper}>
+		<Logo />
+		<Menu />
+		<Contact/>
+    	<main className={styles.main}>
+    		{children}
+    	</main>
+    	<ContextMenu>
+    		All photos are copyrighted by their respective owners. All rights reserved. Unauthorized use prohibited.
+    	</ContextMenu>
+  	</div>
+);
 
 export default Layout;
 
+//
+// LOGO
+//
 const Logo = ({ icon: Icon }) => (
-	<Link className={styles.logoLink} to='/'>
-		<Icon className={styles.logoSvg}/>
-  	</Link>
+	<div className={styles.logo}>
+		<Link
+			to='/'
+			className={styles.logoLink}>
+			<Icon
+				className={styles.logoSvg} />
+		</Link>
+	</div>
 );
 
 Logo.defaultProps = {
@@ -38,27 +48,34 @@ Logo.propTypes = {
 	icon: PropTypes.func
 };
 
+//
+// CONTACT
+//
 const Contact = ({ label }) => (
-	<Link
-		to='/contact/'
-		data-label={label}
-		className={styles.contactLink}
-		activeClassName={styles.contactLinkActive}>
-		{label}
-	</Link>
+	<div className={styles.contact}>
+		<AnimatedLink
+			label={label} 
+			path='/contact/' />
+	</div>
 );
 
 Contact.defaultProps = {
 	label: 'Contact'
 };
 
+Contact.propTypes = {
+	label: PropTypes.string.isRequired
+};
+
+//
+// MENU
+//
 class Menu extends Component {
 
 	state = { isOpen: false }
 
 	toggle = (event) => {
 		event.preventDefault();
-
 		this.setState(
 			(state) => ({
 				isOpen: !state.isOpen
@@ -74,37 +91,29 @@ class Menu extends Component {
 	}
 
 	render() {
-		const {
-			state: {
-				isOpen
-			}
-		} = this;
-
 		return (
 			<nav className={styles.nav}>
 				<a
 					onClick={this.toggle}
-					className={styles.menuToggle}
-					href={this.state.isOpen ? '' :'#menu'}>
-					<MenuIcon isActive={isOpen}/>
+					href={
+						!this.state.isOpen
+							? '#menu' 
+							: ''
+					}
+					className={styles.menuToggle}>
+					<MenuIcon
+						className={styles.menuSvg}
+						isActive={this.state.isOpen} />
 				</a>
-				{isOpen
-					? (
-						<div
-							id="menu"
-							tabIndex="-1"
-							role="button"
-							onClick={this.close}
-							className={styles.menuWrapper}>
-							<div className={styles.menuCentered}>
-							<Centered className={styles.menuCentered}>
-								<Navigation />
-							</Centered>
-							</div>
-						</div>
-					)
-					: null
-				}
+				<div
+					id="menu"
+					role="button"
+					tabIndex="-1"
+					onClick={this.close}
+					className={styles.menuWrapper}>
+					<Navigation
+						isOpen={this.state.isOpen}/>
+				</div>
 			</nav>
 		);
 	}
