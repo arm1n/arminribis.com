@@ -298,8 +298,10 @@ const photosQuery = graphql`
                     width,
                     height
                   },
-  	              fluid(quality: 100) {
-  	                ...GatsbyImageSharpFluid
+  	              fluid(quality: 80, maxWidth: 1200) {
+  	                ...GatsbyImageSharpFluid_withWebp,
+                    presentationHeight,
+                    presentationWidth
   	              }
   	            }
               }

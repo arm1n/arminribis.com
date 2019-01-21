@@ -36,6 +36,31 @@ class Modal extends Component {
   }
 }
 
+const NonStretchedImage = (props) => {
+    const {
+        fluid: {
+            presentationWidth: maxWidth
+        }
+    } = props;
+
+    props = {
+        ...props,
+        ...{
+            style: {
+                ...(props.style || {}),
+                ...{
+                    //margin: '0 auto',
+                    //maxWidth
+                }
+            }
+        }
+    }
+
+    console.log(props);
+
+    return <Img {...props} />
+}
+
 //
 // LIGHTBOX
 //
@@ -56,21 +81,25 @@ class LightBox extends Component {
             return;
         }
 
-        const { offsetHeight } = current;
+        const { offsetHeight, offsetWidth } = current;
         const {
             fluid: {
-                aspectRatio
+                aspectRatio,
+                presentationWidth,
+                presentationHeight
             }
         } = photo;
 
         const style = aspectRatio >= 1
             ? {
                 // landscape photos
-                maxHeight: offsetHeight
+                maxWidth: Math.min(offsetWidth, presentationWidth),
+                maxHeight: Math.min(offsetWidth / aspectRatio, presentationHeight)
             }
             : {
                 // portrait photos
-                maxWidth: offsetHeight * aspectRatio
+                maxWidth: Math.min(offsetHeight * aspectRatio, presentationWidth),
+                maxHeight: Math.min(offsetHeight, presentationHeight)
             };
 
         this.setState({ style });
