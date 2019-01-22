@@ -1,0 +1,10 @@
+@import 'variables';
+
+//
+// GALLERY
+//
+.gallery {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+}

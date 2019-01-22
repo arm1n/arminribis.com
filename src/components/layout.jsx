@@ -53,9 +53,7 @@ Logo.propTypes = {
 //
 const Contact = ({ label }) => (
 	<div className={styles.contact}>
-		<AnimatedLink
-			label={label} 
-			path='/contact/' />
+		<AnimatedLink label={label} path='/contact/' />
 	</div>
 );
 

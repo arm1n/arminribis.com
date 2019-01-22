@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import { Link, StaticQuery, graphql } from 'gatsby';
 
-import { Centered } from './utils';
-
-import { CloseIcon } from './icons';
 import styles from './navigation.module.scss';
+import { Centered, AnimatedLink } from './utils';
 
 //
 // BACK BUTTON
@@ -24,22 +22,14 @@ export const BackButton = (props) => {
 	delete props.label;
 
 	return (
-		<Link
-			to='/'
-			className={styles.backButton}
-			{...props}>
-			<CloseIcon
-				className={styles.backButtonArrow}/>
-			<span
-				className={styles.backButtonLabel}>
-				{label}
-			</span>
-		</Link>
+		<div className={styles.backButton} {...props}>
+			<AnimatedLink path='/' label={label} />
+		</div>
 	);
 };
 
 BackButton.defaultProps = {
-	label: 'Close'
+	label: 'Go back'
 };
 
 BackButton.propTypes = {
@@ -88,25 +78,24 @@ const navigationRender = ({ data, isOpen }) => {
 		} = edge;
 
 		return (
-			<AnimatedLink 
+			<PosedLink 
 				to={path} 
 				key={key}
 				className={styles.navigationItem}
 				activeClassName={styles.navigationItemActive}>
 				{title}
-			</AnimatedLink>
+			</PosedLink>
 		);
 	});
 
 	return (
-		<AnimatedNavigation 
+		<PosedNavigation 
 			className={styles.navigation}
 			pose={isOpen ? 'enter' : 'exit'}>
 			<Centered>
 				{items}
 			</Centered>
-			
-		</AnimatedNavigation>
+		</PosedNavigation>
 	);
 };
 
@@ -143,7 +132,7 @@ export default Navigation;
 //
 // Animations
 //
-const AnimatedNavigation = posed.div({
+const PosedNavigation = posed.div({
 	enter: {
 		opacity: 1,
 		staggerChildren: 50,
@@ -163,7 +152,7 @@ const AnimatedNavigation = posed.div({
 	}
 });
 
-const AnimatedLink = posed(
+const PosedLink = posed(
 	forwardRef(
 		(props, ref) =>
 			<Link

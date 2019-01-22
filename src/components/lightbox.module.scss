@@ -2,7 +2,7 @@
 
 $icon-size: 2rem;
 $button-size: 3rem;
-$button-offset: 0.5rem;
+$button-offset: 1rem;
 $modal-padding: 5rem;
 
 //
@@ -17,7 +17,7 @@ $modal-padding: 5rem;
 	position: fixed;
 	cursor: zoom-out;
 	padding: $modal-padding;
-	background: rgba(0, 0, 0, 1);
+	background: $color-black;//rgba(255,255,255,.9);
 }
 
 //
@@ -53,6 +53,8 @@ $modal-padding: 5rem;
 	height: $button-size;
 	fill: $color-darkgrey;
 
+	transition: all $transition-time $transition-ease;
+
 	&:hover {
 		fill: $color-lightgrey;
 	}
@@ -61,6 +63,10 @@ $modal-padding: 5rem;
 .close {
 	top: $button-offset;
 	right: $button-offset;
+
+	&:hover {
+		transform: scale(1.1);
+	}
 }
 
 .prev,
@@ -72,10 +78,18 @@ $modal-padding: 5rem;
 .next {
 	right: $button-offset;
 	transform: rotate(180deg);
+
+	&:hover {
+		transform: rotate(180deg) translateX(-5%);
+	}
 }
 
 .prev {
 	left: $button-offset;
+
+	&:hover {
+		transform: translateX(-5%);
+	}
 }
 
 .icon {

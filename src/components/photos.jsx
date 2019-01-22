@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql, Link, navigate} from 'gatsby';
-import Gallery from 'react-photo-gallery';
+// import Gallery from 'react-photo-gallery';
 import Img from 'gatsby-image';
 
+import Gallery from './gallery';
 import LightBox from './lightbox';
 import { AnimatedLink } from './utils';
 import slugify from '../utils/slugify';
+
 import { queryString, buildQuery } from '../utils/url';
 
 import styles from './photos.module.scss';
@@ -195,16 +197,27 @@ export class Photos extends Component {
               items: photos = []
             } = this.getCategory();
 
+            const margin = 5;
+            const style = { margin: -margin };
+            const photoPath = (photo) => buildQuery(PARAM_PHOTO,
+              photo.key
+            );
+
             return (
-              <div className={styles.wrapper}>
+              <div 
+                className={styles.wrapper}>
                 <Categories
                   data={this.mapped} 
                   current={category} />
 
-                <div className={styles.photos}>
+                <div 
+                  style={style}
+                  className={styles.photos}>
+                  
                   <Gallery
+                    margin={margin}
                     photos={photos}
-                    ImageComponent={Photo} />
+                    getPath={photoPath} />
                 </div>
 
                 <LightBox
@@ -224,25 +237,26 @@ export class Photos extends Component {
 };
 
 //
-// GALLERY PHOTO
+// PHOTO
 //
-const Photo = ({ photo, index, onClick }) => {
+const Photo = ({ photo, margin}) => {
   const path = buildQuery(PARAM_PHOTO, photo.key);
   const { width, height } = photo;
-  const style = { width, height };
+  const style = { width, height, margin };
 
   return (
-    <Link to={path}>
+    <Link
+      to={path}
+      style={style}
+      className={styles.photo}>
       <Img 
-        style={style}
-        fluid={photo.fluid}
-        className={styles.photo} />
+        fluid={photo.fluid} />
     </Link>
   );
 }
 
 //
-// CATEGORIES NAV
+// NAV
 //
 const Categories = ({ data, current }) => {
 
@@ -298,7 +312,7 @@ const photosQuery = graphql`
                     width,
                     height
                   },
-  	              fluid(quality: 80, maxWidth: 1200) {
+  	              fluid(quality: 100, maxWidth: 1500) {
   	                ...GatsbyImageSharpFluid_withWebp,
                     presentationHeight,
                     presentationWidth

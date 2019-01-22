@@ -45,7 +45,7 @@ export class PortfolioTemplate extends Component {
     return (
       <div className={styles.wrapper}>
         
-        <div className={styles.teaser}>
+        {false && <div className={styles.teaser}>
           <Img
             fluid={fluid}
             className={styles.image} />
@@ -69,7 +69,7 @@ export class PortfolioTemplate extends Component {
             </AnimatedLink>
           </div>
 
-        </div>
+        </div>}
 
         <div
           id='explore'

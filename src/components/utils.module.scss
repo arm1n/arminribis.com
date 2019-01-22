@@ -46,6 +46,7 @@
 		display: block;
 		overflow: hidden;
 		position: absolute;
+		white-space: nowrap;
 		color: $color-white;
 		content: attr(data-label);
 

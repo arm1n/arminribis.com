@@ -36,31 +36,6 @@ class Modal extends Component {
   }
 }
 
-const NonStretchedImage = (props) => {
-    const {
-        fluid: {
-            presentationWidth: maxWidth
-        }
-    } = props;
-
-    props = {
-        ...props,
-        ...{
-            style: {
-                ...(props.style || {}),
-                ...{
-                    //margin: '0 auto',
-                    //maxWidth
-                }
-            }
-        }
-    }
-
-    console.log(props);
-
-    return <Img {...props} />
-}
-
 //
 // LIGHTBOX
 //
@@ -74,7 +49,7 @@ class LightBox extends Component {
         }
     }
 
-    _calculateStyle = () => {
+    _calculateState = () => {
         const { current } = this.contentRef;
         const { photo } = this.props;
         if (!current || !photo) {
@@ -94,19 +69,15 @@ class LightBox extends Component {
             ? {
                 // landscape photos
                 maxWidth: Math.min(offsetWidth, presentationWidth),
-                maxHeight: Math.min(offsetWidth / aspectRatio, presentationHeight)
+                maxHeight: Math.min(offsetWidth / aspectRatio, offsetHeight, presentationHeight)
             }
             : {
                 // portrait photos
-                maxWidth: Math.min(offsetHeight * aspectRatio, presentationWidth),
+                maxWidth: Math.min(offsetHeight * aspectRatio, offsetWidth, presentationWidth),
                 maxHeight: Math.min(offsetHeight, presentationHeight)
             };
 
         this.setState({ style });
-    }
-
-    _handleResize = (event) => {
-        this._calculateStyle();
     }
 
     _handleKeydown = (event) => {
@@ -132,19 +103,21 @@ class LightBox extends Component {
 
     componentDidMount = () => {
         document.addEventListener('keydown', this._handleKeydown);
-        window.addEventListener('resize', this._handleResize);
-        this._calculateStyle();
+        window.addEventListener('resize', this._calculateState);
+        this._calculateState();
     }
 
     componentDidUpdate = ({ photo: prevPhoto }) => {
-        if (prevPhoto !== this.props.photo) {
-            this._calculateStyle();
+        if (prevPhoto === this.props.photo) {
+            return;
         }
+        
+        this._calculateState();
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this._handleKeydown);
-        window.removeEventListener('resize', this._handleResize);
+        window.removeEventListener('resize', this._calculateState);
     }
 
     render() {
@@ -197,6 +170,11 @@ class LightBox extends Component {
                                 fluid={photo.fluid} 
                                 className={styles.lightboxImage} />
                         </a>
+                        {photo.caption &&
+                            <div className={styles.caption}>
+                                {photo.caption}
+                            </div>
+                        }
                     </div>
 
                     {hasNext &&
@@ -207,11 +185,7 @@ class LightBox extends Component {
                         </button>
                     }
 
-                    {photo.caption &&
-                        <div className={styles.caption}>
-                            {photo.caption}
-                        </div>
-                    }
+                    
                 </div>
             </Modal>
         );

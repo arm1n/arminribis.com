@@ -10,16 +10,5 @@
 //
 // GALLERY
 //
-$margin: 0.5rem;
-
 .photos {
-	margin-top: -$margin;
-	margin-left: -$margin;
-}
-
-.photo {
-	flex: 1 1 auto;
-	img {
-		margin: $margin;
-	}
 }
