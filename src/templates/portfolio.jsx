@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import smoothscroll from 'smoothscroll-polyfill';
 
 import Photos from '../components/photos';
-import { ArrowIcon } from '../components/icons';
+import {
+  HikeIcon,
+  ArrowIcon,
+  TravelIcon,
+  ExploreIcon,
+  FacebookIcon,
+  InstagramIcon
+} from '../components/icons';
 import { AnimatedLink, HTML } from '../components/utils';
 
 import styles from './portfolio.module.scss';
-
-// kick off the smooth scroll polyfill
-smoothscroll.polyfill();
 
 export class PortfolioTemplate extends Component {
   contentRef = React.createRef()
@@ -45,7 +48,7 @@ export class PortfolioTemplate extends Component {
     return (
       <div className={styles.wrapper}>
         
-        {false && <div className={styles.teaser}>
+        <div className={styles.teaser}>
           <Img
             fluid={fluid}
             className={styles.image} />
@@ -69,7 +72,7 @@ export class PortfolioTemplate extends Component {
             </AnimatedLink>
           </div>
 
-        </div>}
+        </div>
 
         <div
           id='explore'
@@ -83,6 +86,41 @@ export class PortfolioTemplate extends Component {
           <div className={styles.photos}>
             <Photos />
           </div>
+
+          <div className={styles.icons}>
+            <HikeIcon 
+              className={styles.icon} />
+            <ExploreIcon 
+              className={styles.icon} />
+            <TravelIcon 
+              className={styles.icon} />
+          </div>
+
+          <div
+            className={styles.socialMedia}>
+            <a href='#' className={styles.socialMediaLink}>
+              <span
+                className={styles.socialMediaLabel}>
+                Facebook
+              </span>
+              <FacebookIcon
+                className={styles.socialMediaIcon}/>
+            </a>            
+            <a href='#' className={styles.socialMediaLink}>
+              <span
+                className={styles.socialMediaLabel}>
+                Instagram
+              </span>
+              <InstagramIcon
+                className={styles.socialMediaIcon}/>
+            </a>
+          </div>
+
+          <footer
+            className={styles.footer}>
+
+          </footer>
+
         </div>
       </div>
     );
@@ -91,8 +129,7 @@ export class PortfolioTemplate extends Component {
 
 PortfolioTemplate.defaultProps = {
   logoLabel: 'Armin Ribis',
-  scrollLabel: 'Explore',
-  selectedCategory: null
+  scrollLabel: 'Explore'
 };
 
 PortfolioTemplate.propTypes = {

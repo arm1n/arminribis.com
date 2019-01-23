@@ -15,7 +15,7 @@ const DEFAULT_MARGIN = 5;
 //
 // PHOTO
 //
-export const Photo = ({ path, height, width, margin, fluid }) => {
+export const Photo = ({ path, height, width, margin, caption, fluid }) => {
     const style = { width, height, margin };
 
     return (
@@ -26,6 +26,12 @@ export const Photo = ({ path, height, width, margin, fluid }) => {
           <Img
             fluid={fluid} 
             className={styles.image} />
+            {caption && 
+                <figcaption
+                    className={styles.caption}>
+                  {caption}
+                </figcaption>
+            }
         </Link>
     );
 };

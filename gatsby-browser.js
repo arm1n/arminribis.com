@@ -1,5 +1,9 @@
 import React from 'react';
 import Layout from './src/components/layout';
+import smoothscroll from 'smoothscroll-polyfill';
+
+// kick off the smooth scroll polyfill
+smoothscroll.polyfill();
 
 //
 // Implement the `shouldUpdateScroll` hook avoiding scroll on route change:

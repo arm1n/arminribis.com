@@ -238,7 +238,9 @@ const Categories = ({ data, current }) => {
     );
   }
 
-  return (
+  const hasMultiple = items.length > 1;
+
+  return hasMultiple && (
     <nav 
       className={styles.categories}>
       {items}

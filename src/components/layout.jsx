@@ -8,8 +8,12 @@ import ContextMenu from './contextmenu';
 import styles from './layout.module.scss';
 import { LogoImageIcon, MenuIcon } from './icons';
 
+// import global styles for layout
 import '../styles/main.scss';
 
+//
+// LAYOUT
+//
 const Layout = ({ children }) => (
 	<div className={styles.wrapper}>
 		<Logo />
