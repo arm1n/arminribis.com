@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-import Photos from '../components/photos';
 import {
   HikeIcon,
   ArrowIcon,
@@ -12,11 +11,12 @@ import {
   FacebookIcon,
   InstagramIcon
 } from '../components/icons';
+import Photos from '../components/photos';
 import { AnimatedLink, HTML } from '../components/utils';
 
 import styles from './portfolio.module.scss';
 
-export class PortfolioTemplate extends Component {
+export class Portfolio extends Component {
   contentRef = React.createRef()
 
   scroll = (event) => {
@@ -35,10 +35,16 @@ export class PortfolioTemplate extends Component {
 
   render() {
     const {
-      content,
-      image: {
-        childImageSharp: {
-          fluid
+      data: {
+        markdownRemark: {
+          html: content,
+          frontmatter: {
+            image: {
+              childImageSharp: {
+                fluid
+              }
+            }
+          }
         }
       },
       logoLabel,
@@ -48,6 +54,7 @@ export class PortfolioTemplate extends Component {
     return (
       <div className={styles.wrapper}>
         
+        { /* TEASER */ }
         <div className={styles.teaser}>
           <Img
             fluid={fluid}
@@ -74,19 +81,23 @@ export class PortfolioTemplate extends Component {
 
         </div>
 
+        { /* CONTENT */ }
         <div
           id='explore'
           ref={this.contentRef}
           className={styles.content}>
           
+          { /* Html */ }
           <div className={styles.html}>
             <HTML content={content} />
           </div>
 
+          { /* Photos */ }
           <div className={styles.photos}>
             <Photos />
           </div>
 
+          { /* Icons */ }
           <div className={styles.icons}>
             <HikeIcon 
               className={styles.icon} />
@@ -96,6 +107,7 @@ export class PortfolioTemplate extends Component {
               className={styles.icon} />
           </div>
 
+          { /* Social media */ }
           <div
             className={styles.socialMedia}>
             <a href='#' className={styles.socialMediaLink}>
@@ -121,30 +133,13 @@ export class PortfolioTemplate extends Component {
   }
 };
 
-PortfolioTemplate.defaultProps = {
+Portfolio.defaultProps = {
   logoLabel: 'Armin Ribis',
   scrollLabel: 'Explore'
 };
 
-PortfolioTemplate.propTypes = {
+Portfolio.propTypes = {
   content: PropTypes.node
-};
-
-const Portfolio = ({ data }) => {
-  const {
-    markdownRemark: {
-      html: content,
-      frontmatter: {
-        image
-      }
-    }
-  } = data;
-
-  return (
-      <PortfolioTemplate
-        image={image}
-        content={content} />
-  );
 };
 
 export const portfolioQuery = graphql`

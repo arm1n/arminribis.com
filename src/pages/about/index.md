@@ -2,6 +2,7 @@
 template: about
 type: page
 order: 2
+menu: main
 title: About
 description: Learn more about my mindset - design and photography.
 ---

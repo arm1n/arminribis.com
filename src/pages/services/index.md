@@ -2,6 +2,7 @@
 template: services
 type: page
 order: 3
+menu: main
 title: Services
 description: Find the full list of my offered services in photography and graphic design.
 ---

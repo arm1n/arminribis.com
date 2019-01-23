@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import { SubPage } from '../components/layout';
 
-const About = ({ data }) => {
+const Imprint = ({ data }) => {
   const { 
     markdownRemark: {
       html
@@ -15,8 +15,8 @@ const About = ({ data }) => {
   )
 };
 
-export const aboutQuery = graphql`
-  query aboutQuery($id: String!) {
+export const imprintQuery = graphql`
+  query imprintQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html,
       frontmatter {
@@ -26,4 +26,4 @@ export const aboutQuery = graphql`
   }
 `;
 
-export default About;
+export default Imprint;

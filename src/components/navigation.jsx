@@ -108,11 +108,11 @@ const navigationQuery = graphql`
 			},
 			filter: {
 				context: {
-					template: {
-					ne: null
+					menu: {
+						eq: "main"
+					}
 				}
-			}
-      }
+      		}
 		) {
 			edges {
 				node {

@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-import { AnimatedLink } from './utils';
-import Navigation from './navigation';
+import {
+	HTML,
+	Centered,
+	AnimatedLink
+} from './utils';
+import Footer from './footer';
 import ContextMenu from './contextmenu';
-import styles from './layout.module.scss';
 import { LogoImageIcon, MenuIcon } from './icons';
+import Navigation, { BackButton } from './navigation';
+
+import styles from './layout.module.scss';
 
 // import global styles for layout
 import '../styles/main.scss';
@@ -38,6 +44,18 @@ Layout.propTypes = {
 };
 
 export default Layout;
+
+//
+// SUBPAGE
+//
+export const SubPage = ({ content }) => {
+  return (
+    <Centered>
+      <HTML content={content} />
+      <BackButton />
+    </Centered>
+  )
+};
 
 //
 // LOGO
@@ -83,10 +101,13 @@ Contact.propTypes = {
 //
 class Menu extends Component {
 
-	state = { isOpen: false }
+	state = {
+		isOpen: false
+	}
 
 	toggle = (event) => {
 		event.preventDefault();
+
 		this.setState(
 			(state) => ({
 				isOpen: !state.isOpen
@@ -96,6 +117,7 @@ class Menu extends Component {
 
 	close = (event) => {
 		event.preventDefault();
+		
 		this.setState({
 			isOpen: false
 		});
@@ -129,12 +151,3 @@ class Menu extends Component {
 		);
 	}
 }
-
-//
-// FOOTER
-//
-const Footer = () => (
-	<footer
-		className={styles.footer}>
-	</footer>
-);

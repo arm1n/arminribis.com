@@ -1,17 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { HTML, Centered } from '../components/utils';
-import { BackButton } from '../components/navigation';
-
-export const ContactTemplate = ({ content }) => {
-  return (
-    <Centered>
-      <HTML content={content} />
-      <BackButton />
-    </Centered>
-  )
-};
+import { SubPage } from '../components/layout';
 
 const Contact = ({ data }) => {
   const { 
@@ -21,7 +11,7 @@ const Contact = ({ data }) => {
   } = data;
 
   return (
-    <ContactTemplate content={html} />
+    <SubPage content={html} />
   )
 };
 

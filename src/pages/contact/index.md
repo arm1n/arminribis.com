@@ -2,6 +2,7 @@
 template: contact
 type: page
 order: 4
+menu: footer
 title: Contact
 description: Make a call or write an email to get in touch with me!
 ---
