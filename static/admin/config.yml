@@ -50,6 +50,7 @@ collections:
           - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 1 }
+          - { label: "Menu", name: "menu", widgt: "hidden", default: "main" }
 
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "string" }
@@ -65,6 +66,7 @@ collections:
           - { label: "Template", name: "template", widget: "hidden", default: "about" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 2 }
+          - { label: "Menu", name: "menu", widgt: "hidden", default: "main" }
 
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "string" }
@@ -78,6 +80,7 @@ collections:
           - { label: "Template", name: "template", widget: "hidden", default: "services" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 3 }
+          - { label: "Menu", name: "menu", widgt: "hidden", default: "main" }
 
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
@@ -90,6 +93,20 @@ collections:
           - { label: "Template", name: "template", widget: "hidden", default: "contact" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 4 }
+          - { label: "Menu", name: "menu", widgt: "hidden", default: "footer" }
+
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown"}
+
+      - file: "src/pages/imprint/index.md"
+        label: "Imprint"
+        name: "imprint"
+        fields:
+          - { label: "Template", name: "template", widget: "hidden", default: "imprint" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Order", name: "order", widget: "hidden", default: 4 }
+          - { label: "Menu", name: "menu", widgt: "hidden", default: "footer" }
 
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
