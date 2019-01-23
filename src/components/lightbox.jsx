@@ -159,16 +159,16 @@ class LightBox extends Component {
 
                     <div
                         ref={this.contentRef}
-                        className={styles.lightbox}>
+                        className={styles.wrapper}>
                         <a
                             onClick={onNext}
                             href='javascript:void(0)'
-                            className={styles.lightboxLink}>
+                            className={styles.link}>
                             <Img 
                                 style={style}
                                 critical={true}
                                 fluid={photo.fluid} 
-                                className={styles.lightboxImage} />
+                                className={styles.image} />
                         </a>
                         {photo.caption &&
                             <div className={styles.caption}>
@@ -194,12 +194,10 @@ class LightBox extends Component {
 
 LightBox.propTypes = {
     photo: PropTypes.shape({
-        height: PropTypes.number.isRequired,
-        width: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         index: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        key: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
         fluid: PropTypes.shape({
             aspectRatio: PropTypes.number.isRequired,
             base64: PropTypes.string.isRequired,

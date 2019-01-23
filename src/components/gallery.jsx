@@ -10,6 +10,8 @@ import {
 
 import styles from './gallery.module.scss';
 
+const DEFAULT_MARGIN = 5;
+
 //
 // PHOTO
 //
@@ -21,25 +23,31 @@ export const Photo = ({ path, height, width, margin, fluid }) => {
           to={path}
           style={style}
           className={styles.photo}>
-          <Img fluid={fluid} />
+          <Img
+            fluid={fluid} 
+            className={styles.image} />
         </Link>
     );
 };
 
+Photo.defaultProps = {
+    margin: DEFAULT_MARGIN
+};
+
 Photo.propTypes = {
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    key: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
     fluid: PropTypes.shape({
         aspectRatio: PropTypes.number.isRequired,
         base64: PropTypes.string.isRequired,
         srcSet: PropTypes.string.isRequired,
         sizes: PropTypes.string.isRequired,
         src: PropTypes.string.isRequired,
-    })
+    }),
+    caption: PropTypes.string,
+    margin: PropTypes.number
 };
 
 //
@@ -60,11 +68,13 @@ class Gallery extends Component {
             return;
         }
 
-        const {
+        let {
             offsetWidth: containerWidth
         } = current;
-
         let columns = 1;
+
+        // rounding issues
+        containerWidth -= 1;
 
         if (containerWidth >= 500) {
             columns = 2;
@@ -93,7 +103,6 @@ class Gallery extends Component {
                 containerWidth
             }
         } = this;
-
         const ratios = [];
 
         // now container width given yet, provide empty collection
@@ -132,7 +141,7 @@ class Gallery extends Component {
             //
             // width
             //
-            const width = containerWidth - row.length * (margin * 2);
+            const width = containerWidth - (2 * margin) * row.length;
 
             // 
             // height
@@ -199,22 +208,16 @@ class Gallery extends Component {
                 style={style}
                 ref={this.contentRef}
                 className={styles.gallery}>
-                {
-                    photos.map((photo) => (
-                        <Photo 
-                            {...photo}
-                            key={photo.key} />
-                    ))
-                }
+                {photos.map((photo) => 
+                    <Photo key={photo.id} {...photo} />
+                )}
             </div>
         );
     }
 };
 
 Gallery.defaultProps = {
-    margin: 5,
-    photos: [],
-    getPath: () => 'javascript:void(0)'
+    margin: DEFAULT_MARGIN,
 };
 
 Gallery.propTypes = {

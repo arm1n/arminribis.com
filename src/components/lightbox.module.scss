@@ -17,25 +17,25 @@ $modal-padding: 5rem;
 	position: fixed;
 	cursor: zoom-out;
 	padding: $modal-padding;
-	background: $color-black;//rgba(255,255,255,.9);
+	background: $color-black;
 }
 
 //
 // Lightbox
 //
-.lightbox {
+.wrapper {
 	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.lightbox-link {
+.link {
 	flex: 1 1 auto;
 	cursor: pointer;
 }
 
-.lightbox-image {
+.image {
 	margin: auto;
 }
 

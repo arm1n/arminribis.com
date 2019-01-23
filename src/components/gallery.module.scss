@@ -8,3 +8,46 @@
 	flex-flow: row;
 	flex-wrap: wrap;
 }
+
+.photo {
+	display: block;
+	overflow: hidden;
+	position: relative;
+
+	&:after {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		opacity: 0;
+		content: '';
+		display: block;
+		position: absolute;
+		background: rgba(0, 0, 0, 0.25);
+		transition: all (2* $transition-time) $transition-ease;
+	}
+
+	transition: all (2* $transition-time) $transition-ease;
+
+	&:hover {
+
+		&:before {
+			opacity: 1;
+		}
+
+		.image {
+			transform: scale(1.1);
+		}
+	}
+}
+
+.image {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+
+	transition: transform (2 * $transition-time) $transition-ease;
+}

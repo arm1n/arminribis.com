@@ -12,8 +12,8 @@ import { queryString, buildQuery } from '../utils/url';
 
 import styles from './photos.module.scss';
 
-const PARAM_PHOTO = 'p';
 const PARAM_CATEGORY = 'f';
+const PARAM_PHOTO = 'p';
 
 //
 // PHOTOS
@@ -75,28 +75,22 @@ export class Photos extends Component {
       node: {
         frontmatter: {
           image: {
-            id: key,
+            id,
             childImageSharp: {
               fluid,
-              fluid: {
-                src
-              },
               original: {
                 width,
                 height
               }
             }
           },
-          description: caption,
-          name
+          description: caption
         } 
       }
     } = image;
 
     image = {
-      key,
-      src,
-      name,
+      id,
       width,
       fluid,
       height,
@@ -114,8 +108,7 @@ export class Photos extends Component {
     const mapImages = (images) => {
       return images.map((image, index) => {
         image = this.mapImage({ image });
-        this.images[image.key] = image;
-
+        this.images[image.id] = image;
         image.index = index;
         
         return image;
@@ -149,12 +142,10 @@ export class Photos extends Component {
       return;
     }
 
-    const query = buildQuery(
+    navigate(buildQuery(
       PARAM_PHOTO,
-      prev.key
-    );
-
-    navigate(query);
+      prev.id
+    ));
   }
 
   onNext = (event) => {
@@ -165,12 +156,10 @@ export class Photos extends Component {
       return;
     }
 
-    const query = buildQuery(
+    navigate(buildQuery(
       PARAM_PHOTO,
-      next.key
-    );
-
-    navigate(query);
+      next.id
+    ));
   }
 
   onClose = (event) => {
@@ -197,28 +186,20 @@ export class Photos extends Component {
               items: photos = []
             } = this.getCategory();
 
-            const margin = 5;
-            const style = { margin: -margin };
-            const photoPath = (photo) => buildQuery(PARAM_PHOTO,
-              photo.key
-            );
+            const getPath = ({ id }) => 
+              buildQuery(PARAM_PHOTO, id);
 
             return (
               <div 
                 className={styles.wrapper}>
+                
                 <Categories
                   data={this.mapped} 
                   current={category} />
 
-                <div 
-                  style={style}
-                  className={styles.photos}>
-                  
-                  <Gallery
-                    margin={margin}
-                    photos={photos}
-                    getPath={photoPath} />
-                </div>
+                <Gallery
+                  photos={photos}
+                  getPath={getPath} />
 
                 <LightBox
                     onNext={this.onNext}
@@ -237,26 +218,7 @@ export class Photos extends Component {
 };
 
 //
-// PHOTO
-//
-const Photo = ({ photo, margin}) => {
-  const path = buildQuery(PARAM_PHOTO, photo.key);
-  const { width, height } = photo;
-  const style = { width, height, margin };
-
-  return (
-    <Link
-      to={path}
-      style={style}
-      className={styles.photo}>
-      <Img 
-        fluid={photo.fluid} />
-    </Link>
-  );
-}
-
-//
-// NAV
+// CATEGORIES
 //
 const Categories = ({ data, current }) => {
 
