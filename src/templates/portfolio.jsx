@@ -115,12 +115,6 @@ export class PortfolioTemplate extends Component {
                 className={styles.socialMediaIcon}/>
             </a>
           </div>
-
-          <footer
-            className={styles.footer}>
-
-          </footer>
-
         </div>
       </div>
     );

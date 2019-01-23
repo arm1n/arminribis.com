@@ -25,8 +25,14 @@ export const shouldUpdateScroll = ({
 // https://www.gatsbyjs.org/docs/browser-apis/#wrapPageElement
 //
 export const wrapPageElement = ({ element, props }) => {
+	const {
+		pageContext: {
+			isRoot
+		}
+	} = props;
+
   	return (
-	  	<Layout {...props}>
+	  	<Layout {...props} showFooter={isRoot}>
 	  		{element}
 		</Layout>
 	);

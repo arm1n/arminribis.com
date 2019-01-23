@@ -20,8 +20,9 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
       const {
         node: {
           id,
-          fields: {
-            slug // @see: `onCreateNode()` at EOF
+          fields: { // @see: `onCreateNode()` at EOF
+            slug,
+            isRoot
           },
           frontmatter: { // @see: `static/admin/config.yml`
             template,
@@ -41,6 +42,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           id,
           order,
           title,
+          isRoot,
           template
         }
       })
@@ -75,7 +77,8 @@ exports.createPages = ({ actions: { createPage }, graphql }) => {
           node {
             id
             fields {
-              slug
+              slug,
+              isRoot
             },
             frontmatter {
               template,
@@ -110,11 +113,13 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
 
   switch (type) {
     case 'page': {
-      const value = template !== 'portfolio'
+      const slug = template !== 'portfolio'
         ? createFilePath({ node, getNode })
         : '/';
+      const isRoot = slug === '/'; 
 
-      createNodeField({ name: `slug`, node, value });
+      createNodeField({ name: 'slug', node, value: slug });
+      createNodeField({ name: 'isRoot', node, value: isRoot });
       break;
     }
 

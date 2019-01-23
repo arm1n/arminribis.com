@@ -14,7 +14,7 @@ import '../styles/main.scss';
 //
 // LAYOUT
 //
-const Layout = ({ children }) => (
+const Layout = ({ children, showFooter }) => (
 	<div className={styles.wrapper}>
 		<Logo />
 		<Menu />
@@ -22,11 +22,20 @@ const Layout = ({ children }) => (
     	<main className={styles.main}>
     		{children}
     	</main>
+    	{showFooter && <Footer/>}
     	<ContextMenu>
     		All photos are copyrighted by their respective owners. All rights reserved. Unauthorized use prohibited.
     	</ContextMenu>
   	</div>
 );
+
+Layout.defaultProps = {
+	showFooter: false
+};
+
+Layout.propTypes = {
+	showFooter: PropTypes.bool.isRequired
+};
 
 export default Layout;
 
@@ -120,3 +129,12 @@ class Menu extends Component {
 		);
 	}
 }
+
+//
+// FOOTER
+//
+const Footer = () => (
+	<footer
+		className={styles.footer}>
+	</footer>
+);

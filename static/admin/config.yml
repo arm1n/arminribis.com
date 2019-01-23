@@ -55,6 +55,8 @@ collections:
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Image", name: "image", widget: "image" }
           - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Facebook", name: "facbeook", widget: "string" }
+          - { label: "Instagram", name: "instagram", widget: "string" }
 
       - file: "src/pages/about/index.md"
         label: "About"
