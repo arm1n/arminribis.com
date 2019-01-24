@@ -1,9 +1,7 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 
-import { AnimatedLink } from './utils';
-
-import styles from './navigation.module.scss';
+import styles from './footer.module.scss';
 
 //
 // FOOTER
@@ -37,20 +35,22 @@ const footerRender = ({ data }) => {
 		} = edge;
 
 		return (
-			<AnimatedLink 
+			<Link 
 				key={id}
-				path={path} 
-				label={title} />
+				to={path} 
+				className={styles.navItem}>
+				{title}
+			</Link>
 		);
 	});
 
 	return (
 		<footer 
-			className={styles.footer}>
-			<nav class={styles.nav}>
+			className={styles.wrapper}>
+			<nav className={styles.nav}>
 				{items}
 			</nav>
-			<div class={styles.copy}>
+			<div className={styles.copy}>
 			</div>
 		</footer>
 	);

@@ -3,7 +3,23 @@
 //
 // FOOTER
 //
-.footer {
-	min-height: 5rem;
+.wrapper {
+	display: flex;
+	align-items: center;
+	padding: $layout-offset;
 	background: $color-mediumgrey;
+}
+
+.nav {
+	flex: 1 1 auto;
+}
+
+.nav-item {
+	padding: 0;
+	display: block;
+	text-transform: none;
+}
+
+.copy {
+
 }

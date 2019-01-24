@@ -1,14 +1,14 @@
+import posed, { PoseGroup } from 'react-pose';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-
 import {
-	HTML,
-	Centered,
-	AnimatedLink
-} from './utils';
+	compiler as markdownToJSX
+} from 'markdown-to-jsx';
+
 import Footer from './footer';
 import ContextMenu from './contextmenu';
+import { Centered, AnimatedLink } from './utils';
 import { LogoImageIcon, MenuIcon } from './icons';
 import Navigation, { BackButton } from './navigation';
 
@@ -24,11 +24,16 @@ const Layout = ({ children, showFooter }) => (
 	<div className={styles.wrapper}>
 		<Logo />
 		<Menu />
-		<Contact/>
-    	<main className={styles.main}>
-    		{children}
-    	</main>
-    	{showFooter && <Footer/>}
+		<Contact />
+		<main 
+			className={styles.main}>
+			{children}
+		</main>
+    	{
+    		showFooter && (
+    			<Footer />
+    		)
+    	}
     	<ContextMenu>
     		All photos are copyrighted by their respective owners. All rights reserved. Unauthorized use prohibited.
     	</ContextMenu>
@@ -48,14 +53,58 @@ export default Layout;
 //
 // SUBPAGE
 //
-export const SubPage = ({ content }) => {
-  return (
-    <Centered>
-      <HTML content={content} />
-      <BackButton />
-    </Centered>
-  )
+export const SubPage = ({ html }) => {
+	const {
+		props: {
+			children
+		}
+	} = markdownToJSX(html);
+
+	const items = children
+		.concat([
+			<BackButton/>
+		])
+		.map((child, index) => 
+		(
+			<PosedSubPageDiv 
+				key={index} 
+				index={index}>
+				{child}
+			</PosedSubPageDiv>
+		)
+	);
+
+	return (
+		<Centered>
+			<PoseGroup>
+				{items}
+			</PoseGroup>
+		</Centered>
+	)
 };
+
+SubPage.defaultProps = {
+	html: ''
+};
+
+SubPage.propTypes = {
+	html: PropTypes.string.isRequired
+};
+
+const PosedSubPageDiv = posed.div({
+	enter: {
+		y: 0,
+		opacity: 1,
+		delay: ({ index }) => index * 50
+	},
+	exit: {
+		y: 100,
+		opacity: 0,
+		transition: {
+			duration: 0
+		}
+	}
+});
 
 //
 // LOGO

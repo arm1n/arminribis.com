@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { createRef, Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -17,7 +17,7 @@ import { AnimatedLink, HTML } from '../components/utils';
 import styles from './portfolio.module.scss';
 
 export class Portfolio extends Component {
-  contentRef = React.createRef()
+  contentRef = createRef()
 
   scroll = (event) => {
     event.preventDefault();
@@ -37,7 +37,7 @@ export class Portfolio extends Component {
     const {
       data: {
         markdownRemark: {
-          html: content,
+          html,
           frontmatter: {
             image: {
               childImageSharp: {
@@ -89,7 +89,7 @@ export class Portfolio extends Component {
           
           { /* Html */ }
           <div className={styles.html}>
-            <HTML content={content} />
+            <HTML content={html} />
           </div>
 
           { /* Photos */ }

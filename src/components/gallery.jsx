@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { createRef, Component } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -60,7 +60,7 @@ Photo.propTypes = {
 // GALLERY
 //
 class Gallery extends Component {
-    contentRef = React.createRef()
+    contentRef = createRef()
 
     state = {
         columns: 1,

@@ -15,7 +15,7 @@
     "svgo": "svgo -f \"src/icons\" --config=.svgo.yml"
   },
   "dependencies": {
-    "gatsby": "^2.0.80",
+    "gatsby": "^2.0.93",
     "gatsby-image": "^2.0.25",
     "gatsby-plugin-netlify-cms": "^3.0.9",
     "gatsby-plugin-react-helmet": "^3.0.5",
@@ -27,6 +27,7 @@
     "gatsby-source-filesystem": "^2.0.12",
     "gatsby-transformer-remark": "^2.1.18",
     "gatsby-transformer-sharp": "^2.1.10",
+    "markdown-to-jsx": "^6.9.0",
     "netlify-cms": "^2.3.3",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",

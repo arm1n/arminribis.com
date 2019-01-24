@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { createRef, Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Img from 'gatsby-image';
@@ -40,7 +40,7 @@ class Modal extends Component {
 // LIGHTBOX
 //
 class LightBox extends Component {
-    contentRef = React.createRef()
+    contentRef = createRef()
 
     state = {
         style: {

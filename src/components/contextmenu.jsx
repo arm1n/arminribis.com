@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { createRef, Component } from 'react';
 
 import styles from './contextmenu.module.scss';
 
 class ContextMenu extends Component {
+    contentRef = createRef()
+
     state = {
         visible: false,
     }
-
-    contentRef = React.createRef()
 
     _handleContextMenu = (event) => {
         event.preventDefault();

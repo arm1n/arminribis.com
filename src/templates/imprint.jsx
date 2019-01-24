@@ -11,7 +11,7 @@ const Imprint = ({ data }) => {
   } = data;
 
   return (
-    <SubPage content={html} />
+    <SubPage html={html} />
   )
 };
 

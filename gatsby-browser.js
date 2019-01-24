@@ -1,6 +1,10 @@
 import React from 'react';
+import posed, { PoseGroup } from 'react-pose';
 import Layout from './src/components/layout';
 import smoothscroll from 'smoothscroll-polyfill';
+
+// runtime state for different properties
+let state = { };
 
 // kick off the smooth scroll polyfill
 smoothscroll.polyfill();
@@ -13,27 +17,57 @@ export const shouldUpdateScroll = ({
   routerProps: { location },
   getSavedScrollPosition
 }) => {
-	const currentPosition = getSavedScrollPosition(location)
-
+	const currentPosition = getSavedScrollPosition(location);
   	window.scrollTo(...(currentPosition || [0, 0]))
 
 	return false;
-}
+};
 
 //
 // Implement the `wrapPageElement` hook to avoid remounting of layout:
 // https://www.gatsbyjs.org/docs/browser-apis/#wrapPageElement
 //
+const PosedPage = posed.div({
+  enter: {
+  	opacity: 1,
+  	beforeChildren: true
+  },
+  exit: {
+  	opacity: 0,
+  	afterChildren: true
+  }
+});
+
 export const wrapPageElement = ({ element, props }) => {
 	const {
 		pageContext: {
 			isRoot
+		},
+		location: {
+			pathname,
+			key
 		}
 	} = props;
 
+	const {
+		prevPathname
+	} = state;
+
+	// save current pathname as prev
+	// one in runtime state property
+	state.prevPathname = pathname;
+
   	return (
-	  	<Layout {...props} showFooter={isRoot}>
-	  		{element}
+  		<Layout showFooter={isRoot}>
+			{
+				(prevPathname !== pathname) && (
+					<PoseGroup animateOnMount>
+						<PosedPage key={key}>
+							{element}
+						</PosedPage>
+					</PoseGroup>
+				) || (element)
+			}
 		</Layout>
 	);
 };

@@ -22,8 +22,11 @@ export const BackButton = (props) => {
 	delete props.label;
 
 	return (
-		<div className={styles.backButton} {...props}>
-			<AnimatedLink path='/' label={label} />
+		<div 
+			className={styles.backButton} {...props}>
+			<AnimatedLink 
+				path='/' 
+				label={label} />
 		</div>
 	);
 };
