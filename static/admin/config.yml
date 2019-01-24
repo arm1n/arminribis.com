@@ -99,11 +99,11 @@ collections:
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
 
-      - file: "src/pages/imprint/index.md"
-        label: "Imprint"
-        name: "imprint"
+      - file: "src/pages/legal-notice/index.md"
+        label: "Legal Notice"
+        name: "legal-notice"
         fields:
-          - { label: "Template", name: "template", widget: "hidden", default: "imprint" }
+          - { label: "Template", name: "template", widget: "hidden", default: "legal-notice" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 4 }
           - { label: "Menu", name: "menu", widgt: "hidden", default: "footer" }
