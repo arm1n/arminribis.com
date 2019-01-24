@@ -9,6 +9,7 @@ description: Please find all legal notice and privacy statements here.
 # Legal Notice
 
 
+
 ## Contact
 
 Armin Ribis\
@@ -25,6 +26,7 @@ Register Court: Landesgericht Innsbruck \
 Chamber: Wirtschaftskammer Tirol\
 Authority according to ECG: Magistrat der Stadt Innsbruck\
 Commercial objective of the company: Graphic Design, Advertisement, Photography
+
 
 
 ## Disclaimer
