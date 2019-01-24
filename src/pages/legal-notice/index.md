@@ -15,10 +15,10 @@ Exlgasse 49, Top 2\
 6020 Innsbruck\
 Austria
 
-**E-Mail:**\
+**E-Mail:** \
 armin.ribis@gmail.com
 
-**Internet:**\
+**Internet:** \
 www.arminribis.com
 
 **VAT-ID:**\

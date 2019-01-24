@@ -2,15 +2,13 @@ import posed, { PoseGroup } from 'react-pose';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import {
-	compiler as markdownToJSX
-} from 'markdown-to-jsx';
 
 import Footer from './footer';
 import ContextMenu from './contextmenu';
 import { Centered, AnimatedLink } from './utils';
 import { LogoImageIcon, MenuIcon } from './icons';
 import Navigation, { BackButton } from './navigation';
+import { parseHTML } from '../utils/html';
 
 import styles from './layout.module.scss';
 
@@ -54,15 +52,7 @@ export default Layout;
 // SUBPAGE
 //
 export const SubPage = ({ html }) => {
-	const {
-		props: {
-			children
-		}
-	} = markdownToJSX(html, {
-		forceInline: true
-	});
-
-	const items = children
+	const items = parseHTML(html)
 		.concat([
 			<BackButton/>
 		])
@@ -172,6 +162,10 @@ class Menu extends Component {
 		this.setState({
 			isOpen: false
 		});
+	}
+
+	componentDidUpdate() {
+		console.log('>>>');
 	}
 
 	render() {

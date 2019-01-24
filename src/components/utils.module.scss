@@ -12,13 +12,15 @@
 //
 .centered-wrapper {
 	display: flex;
-	height: 100vh;
 	margin: 0 auto;
-	max-width: $breakpoint-sm;
+	max-width: 750px;
+	min-height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .centered-container {
-	margin: auto;
+	margin: $layout-offset + $layout-margin auto;
 }
 
 //
