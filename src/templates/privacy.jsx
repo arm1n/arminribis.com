@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import { SubPage } from '../components/layout';
 
-const LegalNotice = ({ data }) => {
+const Privacy = ({ data }) => {
   const { 
     markdownRemark: {
       html
@@ -15,8 +15,8 @@ const LegalNotice = ({ data }) => {
   )
 };
 
-export const legalNoticeQuery = graphql`
-  query legalNoticeQuery($id: String!) {
+export const privacyQuery = graphql`
+  query privacyQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html,
       frontmatter {
@@ -26,4 +26,4 @@ export const legalNoticeQuery = graphql`
   }
 `;
 
-export default LegalNotice;
+export default Privacy;

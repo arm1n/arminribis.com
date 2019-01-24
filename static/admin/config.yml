@@ -105,7 +105,20 @@ collections:
         fields:
           - { label: "Template", name: "template", widget: "hidden", default: "legal-notice" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
-          - { label: "Order", name: "order", widget: "hidden", default: 4 }
+          - { label: "Order", name: "order", widget: "hidden", default: 5 }
+          - { label: "Menu", name: "menu", widgt: "hidden", default: "footer" }
+
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown"}
+
+      - file: "src/pages/privacy/index.md"
+        label: "Privacy"
+        name: "privacy"
+        fields:
+          - { label: "Template", name: "template", widget: "hidden", default: "privacy" }
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Order", name: "order", widget: "hidden", default: 6 }
           - { label: "Menu", name: "menu", widgt: "hidden", default: "footer" }
 
           - { label: "Title", name: "title", widget: "string" }

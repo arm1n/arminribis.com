@@ -4,7 +4,7 @@ type: page
 order: 5
 menu: footer
 title: Legal Notice
-description: Please find all legal notice and privacy statements here.
+description: Please find all legal notice here.
 ---
 # Legal Notice
 
@@ -22,12 +22,12 @@ armin.ribis@gmail.com
 www.arminribis.com
 
 **VAT-ID:**\
--
+n/a
 
 **Company Registration:**\
--
+n/a
 
-**Register Court**\
+**Register Court:**\
 Landesgericht Innsbruck
 
 **Chamber:**\
@@ -36,7 +36,7 @@ Wirtschaftskammer Tirol
 **Authority according to ECG:**\
 Magistrat der Stadt Innsbruck
 
-**Commercial objective of the company:**
+**Commercial objective of the company:**\
 Graphic Design, Advertisement, Photography
 
 ## Disclaimer
