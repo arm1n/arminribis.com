@@ -8,8 +8,6 @@ description: Please find all legal notice and privacy statements here.
 ---
 # Legal Notice
 
-
-
 ## Contact
 
 Armin Ribis\
@@ -17,15 +15,29 @@ Exlgasse 49, Top 2\
 6020 Innsbruck\
 Austria
 
-**E-Mail:** armin.ribis@gmail.com\
-**Internet:** www.arminribis.com
+**E-Mail:**\
+armin.ribis@gmail.com
 
-**VAT-ID:** -\
-**Company Registration:** -\
-**Register Court:** Landesgericht Innsbruck \
-**Chamber:** Wirtschaftskammer Tirol\
-**Authority according to ECG:** Magistrat der Stadt Innsbruck\
-**Commercial objective of the company:** Graphic Design, Advertisement, Photography
+**Internet:**\
+www.arminribis.com
+
+**VAT-ID:**\
+-
+
+**Company Registration:**\
+-
+
+**Register Court**\
+Landesgericht Innsbruck
+
+**Chamber:**\
+Wirtschaftskammer Tirol
+
+**Authority according to ECG:**\
+Magistrat der Stadt Innsbruck
+
+**Commercial objective of the company:**
+Graphic Design, Advertisement, Photography
 
 ## Disclaimer
 
