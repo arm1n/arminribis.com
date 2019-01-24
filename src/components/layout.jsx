@@ -58,9 +58,7 @@ export const SubPage = ({ html }) => {
 		props: {
 			children
 		}
-	} = markdownToJSX(html, {
-		forceBlock: true
-	});
+	} = markdownToJSX(html);
 
 	const items = children
 		.concat([
