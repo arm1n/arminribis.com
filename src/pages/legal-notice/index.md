@@ -1,13 +1,12 @@
 ---
-template: imprint
+template: legal-notice
 type: page
 order: 5
 menu: footer
-title: Impressum
+title: Legal Notice
 description: Please find all legal notice and privacy statements here.
 ---
 # Legal Notice
-
 
 
 ## Contact
@@ -26,7 +25,6 @@ Register Court: Landesgericht Innsbruck \
 Chamber: Wirtschaftskammer Tirol\
 Authority according to ECG: Magistrat der Stadt Innsbruck\
 Commercial objective of the company: Graphic Design, Advertisement, Photography
-
 
 
 ## Disclaimer
