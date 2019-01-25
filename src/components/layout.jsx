@@ -115,8 +115,12 @@ class Menu extends Component {
 		});
 	}
 
-	componentDidUpdate() {
-		console.log('>>>');
+	componentWillReceiveProps () {
+		// close menu automatically on rerenders
+		// if it's still open (f.e. page changes) 
+		this.setState({
+			isOpen: false
+		});
 	}
 
 	render() {
