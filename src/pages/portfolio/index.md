@@ -10,7 +10,9 @@ scroll: Explore
 facebook:
   label: Facebook
   url: 'https://www.facebook.com/armin.ribis'
-instagram: 'https://www.instagram.com/armin_ribis'
+instagram:
+  label: Instagram
+  url: 'https://www.instagram.com/armin_ribis'
 ---
 # Say cheeze!
 

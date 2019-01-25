@@ -57,8 +57,18 @@ collections:
           - { label: "Image", name: "image", widget: "image" }
           - { label: "Scroll", name: "scroll", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-          - { label: "Facebook", name: "facbeook", widget: "string" }
-          - { label: "Instagram", name: "instagram", widget: "string" }
+          - label: "Facebook"
+            name: "facebook"
+            widget: "object"
+            fields: 
+            - {label: "Label", name: "label", widget: "string"}
+            - {label: "URL", name: "url", widget: "string"}
+          - label: "Instagram"
+            name: "instagram"
+            widget: "object"
+            fields: 
+            - {label: "Label", name: "label", widget: "string"}
+            - {label: "URL", name: "url", widget: "string"}
 
       - file: "src/pages/about/index.md"
         label: "About"

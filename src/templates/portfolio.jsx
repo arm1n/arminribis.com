@@ -44,12 +44,14 @@ export class Portfolio extends Component {
               childImageSharp: {
                 fluid
               }
-            }
+            },
+            scroll: scrollLabel,
+            facebook: facebookLabel,
+            instagram: instagramLabel
           }
         }
       },
-      logoLabel,
-      scrollLabel
+      logoLabel
     } = this.props;
 
     return (
@@ -69,7 +71,7 @@ export class Portfolio extends Component {
             <AnimatedLink
               path='#explore'
               internal={false}
-              label={scrollLabel}
+              label={scroll}
               onClick={this.scroll}>
               <span className={styles.scrollLabel}>
                 {scrollLabel}
@@ -136,11 +138,10 @@ export class Portfolio extends Component {
 
 Portfolio.defaultProps = {
   logoLabel: 'Armin Ribis',
-  scrollLabel: 'Explore'
 };
 
 Portfolio.propTypes = {
-  content: PropTypes.node
+  logoLabel: PropTypes.string.isRequired
 };
 
 export const portfolioQuery = graphql`
