@@ -1,4 +1,13 @@
+@import 'variables';
+
 //
 // COPYRIGHT
 //
-.wrapper{}
+.wrapper{
+	font-size: $font-size-xs;
+	
+	p {
+		margin: 0;
+		padding: 0;
+	}
+}

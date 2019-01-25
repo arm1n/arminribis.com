@@ -6,6 +6,8 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 import styles from './navigation.module.scss';
 import { Centered, AnimatedLink } from './utils';
 
+import { ArrowIcon } from './icons'
+
 //
 // BACK BUTTON
 //
@@ -24,6 +26,7 @@ export const BackButton = (props) => {
 	return (
 		<div 
 			className={styles.backButton} {...props}>
+			<ArrowIcon className={styles.backButtonIcon} />
 			<AnimatedLink 
 				path='/' 
 				label={label} />

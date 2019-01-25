@@ -8,28 +8,13 @@ import Copyright from './copyright';
 // FOOTER
 //
 const Footer = () => (
-  <footer 
-	className={styles.wrapper}>
-	
-	<Copyright />
-	<Menu />
-  </footer>
+	<StaticQuery
+		query={footerQuery}
+		render={footerRender}
+	/>
 );
 
-//
-// MENU
-//
-const Menu = () => (
-  <StaticQuery
-    query={menuQuery}
-    render={
-    	(data) => 
-    		menuRender({data})
-    }
-  />
-);
-
-const menuRender = ({ data }) => {
+const footerRender = (data) => {
 	const {
 		allSitePage: {
 			edges
@@ -58,14 +43,18 @@ const menuRender = ({ data }) => {
 	});
 
 	return (
-		<nav className={styles.menu}>
-			{items}
-		</nav>
+		<footer
+			className={styles.wrapper}>
+			<nav className={styles.menu}>
+				{items}
+			</nav>
+			<Copyright />
+		</footer>
 	);
 };
 
-const menuQuery = graphql`
-	query footerMenuQuery {
+const footerQuery = graphql`
+	query footerQuery {
 		allSitePage(
 			sort: {
 				fields: [context___order],
@@ -92,10 +81,4 @@ const menuQuery = graphql`
 	}
 `;
 
-//
-// FOOTER COPY
-//
-
-
 export default Footer;
-

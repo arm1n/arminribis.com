@@ -1,49 +1,39 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
+import { HTML } from './utils';
+
 import styles from './copyright.module.scss';
 
 const Copyright = () => (
   <StaticQuery
     query={copyrightQuery}
-    render={
-    	(data) => 
-    		copyrightRender({data})
-    }
+    render={copyrightRender}
   />
 );
 
-const copyrightRender = ({ data }) => {
-	/*const {
-		allSitePage: {
-			edges
+const copyrightRender = (data) => {
+	const {
+		markdownRemark: {
+			html
 		}
-	} = data;*/
-	console.log(data);
-
+	} = data;
 	return (
 		<div className={styles.wrapper}>
-
+			<HTML content={html} />
 		</div>
 	);
 };
 
 const copyrightQuery = graphql`
 	query copyrightQuery {
-		allMarkdownRemark(
-			filter: {
-				frontmatter: {
-					type: {
-						eq: "block"
-					}
+		markdownRemark (
+			frontmatter: { 
+				name: { 
+					eq: "footer"
 				}
-			})
-		{
-			edges {
-				node {
-					id
-				}
-			}
+			}) {
+			html
 		}
 	}
 `;

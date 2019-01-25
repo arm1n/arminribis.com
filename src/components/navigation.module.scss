@@ -28,7 +28,22 @@
 // BACK BUTTON
 //
 .back-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-top: 5rem;
 	font-weight: bold;
 	font-size: $font-size-md;
+
+	&:hover {
+		.back-button-icon{
+			fill: $color-white;
+		}
+	}
+}
+
+.back-button-icon {
+	padding: 0.5rem;
+	margin: 0.25rem 0 0;
+	transition: fill $transition-time $transition-ease;
 }

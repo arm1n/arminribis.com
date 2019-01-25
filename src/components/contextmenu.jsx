@@ -77,12 +77,8 @@ class ContextMenu extends Component {
       document.removeEventListener('scroll', this._handleScroll);
     }
     
-    render() {
-        if (!this.state.visible) {
-            return null;
-        }
-        
-        return(
+    render() {       
+        return this.state.visible && (
             <div 
                 ref={this.contentRef}
                 className={styles.contextMenu}>

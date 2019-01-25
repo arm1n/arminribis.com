@@ -11,9 +11,8 @@ import {
   FacebookIcon,
   InstagramIcon
 } from '../components/icons';
-import { parseHTML } from '../utils/html';
 import Photos from '../components/photos';
-import { AnimatedLink } from '../components/utils';
+import { HTML, AnimatedLink } from '../components/utils';
 
 import styles from './portfolio.module.scss';
 
@@ -92,7 +91,7 @@ export class Portfolio extends Component {
           
           { /* Html */ }
           <div className={styles.html}>
-            {parseHTML(html)}
+            <HTML content={html}/>
           </div>
 
           { /* Photos */ }

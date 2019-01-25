@@ -1,5 +1,6 @@
 ---
 type: block
+name: footer
 ---
 Armin Ribis\
 Exlgasse 49\

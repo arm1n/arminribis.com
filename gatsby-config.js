@@ -28,6 +28,13 @@ module.exports = {
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
+				path: `${__dirname}/src/blocks`,
+				name: `blocks`,
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
 				path: `${__dirname}/src/data/photos`,
 				name: `photos`,
 			},
