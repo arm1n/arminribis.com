@@ -46,8 +46,8 @@ export class Portfolio extends Component {
               }
             },
             scroll: scrollLabel,
-            facebook: facebookLabel,
-            instagram: instagramLabel
+            facebook,
+            instagram
           }
         }
       },
@@ -71,7 +71,7 @@ export class Portfolio extends Component {
             <AnimatedLink
               path='#explore'
               internal={false}
-              label={scroll}
+              label={scrollLabel}
               onClick={this.scroll}>
               <span className={styles.scrollLabel}>
                 {scrollLabel}
@@ -113,22 +113,32 @@ export class Portfolio extends Component {
           { /* Social media */ }
           <div
             className={styles.socialMedia}>
-            <a href='#' className={styles.socialMediaLink}>
-              <span
-                className={styles.socialMediaLabel}>
-                Facebook
-              </span>
-              <FacebookIcon
-                className={styles.socialMediaIcon}/>
-            </a>            
-            <a href='#' className={styles.socialMediaLink}>
-              <span
-                className={styles.socialMediaLabel}>
-                Instagram
-              </span>
-              <InstagramIcon
-                className={styles.socialMediaIcon}/>
-            </a>
+            {facebook.url && facebook.label && (
+                <a 
+                  target='_blank'
+                  href={facebook.url}
+                  className={styles.socialMediaLink}>
+                  <span
+                    className={styles.socialMediaLabel}>
+                    {facebook.label}
+                  </span>
+                  <FacebookIcon
+                    className={styles.socialMediaIcon}/>
+              </a>
+            )} 
+            {instagram.url && instagram.label && (        
+              <a 
+                target='_blank'
+                href={instagram.url} 
+                className={styles.socialMediaLink}>
+                <span
+                  className={styles.socialMediaLabel}>
+                  {instagram.label}
+                </span>
+                <InstagramIcon
+                  className={styles.socialMediaIcon}/>
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -156,6 +166,15 @@ export const portfolioQuery = graphql`
               ...GatsbyImageSharpFluid
             }
           }
+        },
+        scroll,
+        facebook {
+          url,
+          label
+        },
+        instagram {
+          url,
+          label
         }
       }
     }

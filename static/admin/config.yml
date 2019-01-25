@@ -135,3 +135,17 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
+
+  - name: "blocks"
+    label: "Blocks"
+    delete: false
+    editor: 
+      preview: false 
+    files:
+
+      - file: "src/blocks/footer/index.md"
+        label: "Footer"
+        name: "footer"
+        fields:
+          - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
+          - { label: "Body", name: "body", widget: "markdown" }
