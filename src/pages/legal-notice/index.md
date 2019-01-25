@@ -8,6 +8,8 @@ description: Please find all legal notice here.
 ---
 # Legal Notice
 
+
+
 ## Contact
 
 Armin Ribis\
