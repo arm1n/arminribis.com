@@ -7,16 +7,27 @@ import styles from './footer.module.scss';
 // FOOTER
 //
 const Footer = () => (
+  <footer 
+	className={styles.wrapper}>
+	<Menu />
+	<Copy />
+  </footer>
+);
+
+//
+// MENU
+//
+const Menu = () => (
   <StaticQuery
-    query={footerQuery}
+    query={menuQuery}
     render={
     	(data) => 
-    		footerRender({data})
+    		menuRender({data})
     }
   />
 );
 
-const footerRender = ({ data }) => {
+const menuRender = ({ data }) => {
 	const {
 		allSitePage: {
 			edges
@@ -38,26 +49,77 @@ const footerRender = ({ data }) => {
 			<Link 
 				key={id}
 				to={path} 
-				className={styles.navItem}>
+				className={styles.menuItem}>
 				{title}
 			</Link>
 		);
 	});
 
 	return (
-		<footer 
-			className={styles.wrapper}>
-			<nav className={styles.nav}>
-				{items}
-			</nav>
-			<div className={styles.copy}>
-			</div>
-		</footer>
+		<nav className={styles.menu}>
+			{items}
+		</nav>
 	);
 };
 
-const footerQuery = graphql`
-	query footerQuery {
+const menuQuery = graphql`
+	query footerMenuQuery {
+		allSitePage(
+			sort: {
+				fields: [context___order],
+				order: ASC
+			},
+			filter: {
+				context: {
+					menu: {
+						eq: "footer"
+					}
+				}
+      		}
+		) {
+			edges {
+				node {
+					id,
+					path,
+					context {
+						title
+					}
+				}
+			}
+		}
+	}
+`;
+
+//
+// FOOTER COPY
+//
+const Copy = () => (
+  <StaticQuery
+    query={copyQuery}
+    render={
+    	(data) => 
+    		copyRender({data})
+    }
+  />
+);
+
+const copyRender = ({ data }) => {
+	/*const {
+		allSitePage: {
+			edges
+		}
+	} = data;*/
+	console.log(data);
+
+	return (
+		<div className={styles.copy}>
+
+		</div>
+	);
+};
+
+const copyQuery = graphql`
+	query footerCopyQuery {
 		allSitePage(
 			sort: {
 				fields: [context___order],
