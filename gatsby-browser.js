@@ -31,17 +31,6 @@ export const shouldUpdateScroll = ({
 // Implement the `wrapPageElement` hook to avoid remounting of layout:
 // https://www.gatsbyjs.org/docs/browser-apis/#wrapPageElement
 //
-const PosedPage = posed.div({
-  enter: {
-  	opacity: 1,
-  	beforeChildren: true
-  },
-  exit: {
-  	opacity: 0,
-  	afterChildren: true
-  }
-});
-
 export const wrapPageElement = ({ element, props }) => {
 	const {
 		pageContext: {
@@ -76,3 +65,13 @@ export const wrapPageElement = ({ element, props }) => {
 	);
 };
 
+const PosedPage = posed.div({
+  enter: {
+  	opacity: 1,
+  	beforeChildren: true
+  },
+  exit: {
+  	opacity: 0,
+  	afterChildren: true
+  }
+});
