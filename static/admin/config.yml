@@ -147,5 +147,5 @@ collections:
         label: "Footer"
         name: "footer"
         fields:
-          - { label: "Template", name: "template", widget: "hidden", default: "portfolio" }
+          - { label: "Type", name: "type", widget: "hidden", default: "block" }
           - { label: "Body", name: "body", widget: "markdown" }

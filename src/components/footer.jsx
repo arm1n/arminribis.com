@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, StaticQuery, graphql } from 'gatsby';
 
 import styles from './footer.module.scss';
+import Copyright from './copyright';
 
 //
 // FOOTER
@@ -9,8 +10,9 @@ import styles from './footer.module.scss';
 const Footer = () => (
   <footer 
 	className={styles.wrapper}>
+	
+	<Copyright />
 	<Menu />
-	<Copy />
   </footer>
 );
 
@@ -93,58 +95,7 @@ const menuQuery = graphql`
 //
 // FOOTER COPY
 //
-const Copy = () => (
-  <StaticQuery
-    query={copyQuery}
-    render={
-    	(data) => 
-    		copyRender({data})
-    }
-  />
-);
 
-const copyRender = ({ data }) => {
-	/*const {
-		allSitePage: {
-			edges
-		}
-	} = data;*/
-	console.log(data);
-
-	return (
-		<div className={styles.copy}>
-
-		</div>
-	);
-};
-
-const copyQuery = graphql`
-	query footerCopyQuery {
-		allSitePage(
-			sort: {
-				fields: [context___order],
-				order: ASC
-			},
-			filter: {
-				context: {
-					menu: {
-						eq: "footer"
-					}
-				}
-      		}
-		) {
-			edges {
-				node {
-					id,
-					path,
-					context {
-						title
-					}
-				}
-			}
-		}
-	}
-`;
 
 export default Footer;
 
