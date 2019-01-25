@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { SubPage } from '../components/layout';
+import SubPage from '../components/subpage';
 
 const About = ({ data }) => {
   const { 

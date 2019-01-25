@@ -17,8 +17,12 @@ export const shouldUpdateScroll = ({
   routerProps: { location },
   getSavedScrollPosition
 }) => {
-	const currentPosition = getSavedScrollPosition(location);
-  	window.scrollTo(...(currentPosition || [0, 0]))
+	const savedPosition = getSavedScrollPosition(location);
+	const scrollTo = location.pathname === '/'
+		? savedPosition || [0, 0]
+		: [0, 0];
+		
+  	window.scrollTo(...scrollTo)
 
 	return false;
 };

@@ -1,9 +1,9 @@
 ---
-template: privacy
+template: privacy-policy
 type: page
 order: 6
 menu: footer
-title: Privacy
+title: Privacy Policy
 description: Please find all privacy statements here.
 ---
 # Privacy Policy

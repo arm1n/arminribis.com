@@ -1,19 +1,20 @@
-import posed, { PoseGroup } from 'react-pose';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
 import Footer from './footer';
+import Navigation from './navigation';
+import { AnimatedLink } from './utils';
 import ContextMenu from './contextmenu';
-import { Centered, AnimatedLink } from './utils';
 import { LogoImageIcon, MenuIcon } from './icons';
-import Navigation, { BackButton } from './navigation';
-import { parseHTML } from '../utils/html';
 
 import styles from './layout.module.scss';
 
 // import global styles for layout
 import '../styles/main.scss';
+
+export const SUBPAGE_LAYOUT_SMALL = styles.subpageSmall;
+export const SUBPAGE_LAYOUT_LARGE = styles.subpageLarge;
 
 //
 // LAYOUT
@@ -47,56 +48,6 @@ Layout.propTypes = {
 };
 
 export default Layout;
-
-//
-// SUBPAGE
-//
-export const SubPage = ({ html }) => {
-	const items = parseHTML(html)
-		.concat([
-			<BackButton/>
-		])
-		.map((child, index) => 
-		(
-			<PosedSubPageDiv 
-				key={index} 
-				index={index}>
-				{child}
-			</PosedSubPageDiv>
-		)
-	);
-
-	return (
-		<Centered>
-			<PoseGroup>
-				{items}
-			</PoseGroup>
-		</Centered>
-	)
-};
-
-SubPage.defaultProps = {
-	html: ''
-};
-
-SubPage.propTypes = {
-	html: PropTypes.string.isRequired
-};
-
-const PosedSubPageDiv = posed.div({
-	enter: {
-		y: 0,
-		opacity: 1,
-		delay: ({ index }) => index * 50
-	},
-	exit: {
-		y: 100,
-		opacity: 0,
-		transition: {
-			duration: 0
-		}
-	}
-});
 
 //
 // LOGO

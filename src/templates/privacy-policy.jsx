@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import SubPage, { LAYOUT_LARGE } from '../components/subpage';
+import SubPage, {LAYOUT_LARGE} from '../components/subpage';
 
-const LegalNotice = ({ data }) => {
+const PrivacyPolicy = ({ data }) => {
   const { 
     markdownRemark: {
       html
@@ -17,8 +17,8 @@ const LegalNotice = ({ data }) => {
   )
 };
 
-export const legalNoticeQuery = graphql`
-  query legalNoticeQuery($id: String!) {
+export const privacyPolicyQuery = graphql`
+  query privacyPolicyQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html,
       frontmatter {
@@ -28,4 +28,4 @@ export const legalNoticeQuery = graphql`
   }
 `;
 
-export default LegalNotice;
+export default PrivacyPolicy;

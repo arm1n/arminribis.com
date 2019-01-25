@@ -112,11 +112,11 @@ collections:
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown"}
 
-      - file: "src/pages/privacy/index.md"
-        label: "Privacy"
-        name: "privacy"
+      - file: "src/pages/privacy-policy/index.md"
+        label: "Privacy Policy"
+        name: "privacy-policy"
         fields:
-          - { label: "Template", name: "template", widget: "hidden", default: "privacy" }
+          - { label: "Template", name: "template", widget: "hidden", default: "privacy-policy" }
           - { label: "Type", name: "type", widget: "hidden", default: "page" }
           - { label: "Order", name: "order", widget: "hidden", default: 6 }
           - { label: "Menu", name: "menu", widgt: "hidden", default: "footer" }
